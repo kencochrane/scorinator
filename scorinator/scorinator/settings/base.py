@@ -126,6 +126,7 @@ PREREQ_APPS = (
     'south',
     'gunicorn',
     'bootstrap3',
+    'rest_framework',
 )
 
 PROJECT_APPS = (
