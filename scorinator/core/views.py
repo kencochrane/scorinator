@@ -8,7 +8,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         top_scores = ProjectScore.objects.top(11)
         if top_scores:
-            featured_project = top_scores.pop().project
+            featured_project = list(top_scores).pop().project
         else:
             featured_project = {"name": "Unknown"}
         kwargs.update(featured_project=featured_project)

@@ -39,7 +39,7 @@
           <tr>
             <td>{{ score.total_score|display_score }}</td>
             <td>
-              <a href="{% url 'project.detail' project.slug %}">
+              <a href="{% url 'project.detail' score.project.slug %}">
                 {{ score.project.name }}
               </a>
             </td>
