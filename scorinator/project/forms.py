@@ -5,4 +5,4 @@ from project.models import Project
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        exclude = ('date_added', 'last_update')
+        exclude = ('date_added', 'last_update', 'slug')

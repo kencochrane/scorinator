@@ -3,7 +3,22 @@ from django.test import TestCase
 from django.test.client import Client
 from django_dynamic_fixture import G
 
-from project.models import Project
+from project.models import Project, set_slug
+
+
+class TestSetSlug(TestCase):
+    def setUp(self):
+        G(Project, name="test")
+
+    def test_normal(self):
+        assert "example" == set_slug("example")
+
+    def test_first_dup(self):
+        assert "test--1" == set_slug("test")
+
+    def test_next_dup(self):
+        G(Project, n=14, name="test2")
+        assert Project.objects.filter(slug="test2--13").exists() is True
 
 
 class TestProject(TestCase):
