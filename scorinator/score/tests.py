@@ -1,16 +1,23 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
 
+from score.templatetags.score_tags import display_score
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+
+class TestDisplayScore(TestCase):
+    def test_string(self):
+        assert "?" in display_score("")
+
+    def test_danger(self):
+        assert "danger" in display_score("30")
+
+    def test_warning(self):
+        assert "warning" in display_score("50")
+
+    def test_primary(self):
+        assert "primary" in display_score("65")
+
+    def test_info(self):
+        assert "info" in display_score("79")
+
+    def test_success(self):
+        assert "success" in display_score("81")

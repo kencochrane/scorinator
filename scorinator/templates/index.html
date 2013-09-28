@@ -1,14 +1,63 @@
 {% extends "base.html" %}
+{% load score_tags %}
 
 {% block jumbotron %}
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1>Scorinator!</h1>
-      <p>Your python applications rated</p>
+      <div class="col-md-6">
+        <h1>Scorinator!</h1>
+        <p>Python projects rated!</p>
+      </div>
+      <div class="col-md-3 col-md-offset-2" id="featured">
+        Top Rated Project
+        <h2>
+          {{ featured_project.name }}
+          {{ featured_project.score|display_score }}
+          <a href="{{ featured_project.repo_url }}">
+            {{ featured_project.repo_url }}
+          </a>
+        </h2>
+      </div>
     </div>
   </div>
 {% endblock jumbotron %}
 
 {% block content %}
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <td>Score</td>
+            <td>Name</td>
+            <td>Repo URL</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for score in top_scores %}
+          <tr>
+            <td>{{ score.total_score|display_score }}</td>
+            <td>
+              <a href="{% url 'project.detail' score.project.slug %}">
+                {{ score.project.name }}
+              </a>
+            </td>
+            <td>
+              <a href="{{ project.repo_url }}">{{ score.project.repo_url }}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <h2>How it Works</h2>
+
+      <p>Basically there are a whole lof of attributes setup, for which data is gathered via a ton of API access to a bunch of services and combining the data and calculating a score for each of these attributes. The final score is arrived at by adding all these attribute scores together. For a more detailed explanation of how this is done, study the background image.</p>
+    </div>
+  </div>
 {% endblock %}

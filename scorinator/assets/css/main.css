@@ -6,6 +6,10 @@ body {
     background: url(../img/math-equations.jpg);
 }
 
+.jumbotron {
+    background: none;
+}
+
 .page-header {
     border-bottom: 1px solid #ccc;
 }
