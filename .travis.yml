@@ -3,5 +3,9 @@ python:
  - "2.7"
 # command to install dependencies
 install:
- - pip install -r requirements.txt --use-mirrors
-script: python scorinator/manage.py test --settings=scorinator.settings.test
+    - pip install -r requirements.txt --use-mirrors
+    - pip install coveralls --use-mirrors
+script:
+    - coverage run scorinator/manage.py test --settings=scorinator.settings.test
+after_success:
+    - coveralls
