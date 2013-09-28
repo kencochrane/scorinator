@@ -22,4 +22,8 @@ LOGGING['loggers']['opbeat.errors'] = {
 
 LOGGING['handlers']['log_file']['filename'] = '/var/log/scorinator.log'
 
-ALLOWED_HOSTS=['localhost', 'scorinator.herokuapp.com']
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']

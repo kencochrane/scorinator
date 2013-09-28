@@ -8,6 +8,7 @@ pytz==2013b
 django-annoying==0.7.7
 psycopg2==2.5.1 
 dj-database-url==0.2.2
+django-toolbelt
 
 # deployment
 Fabric==1.7.0
