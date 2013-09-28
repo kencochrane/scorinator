@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from score.models import ProjectScore, ScoreAttribute
+from score.models import ProjectScore, ScoreAttribute, ProjectScoreAttribute
 
 
 class ProjectScoreViewSet(viewsets.ModelViewSet):
@@ -11,3 +11,8 @@ class ProjectScoreViewSet(viewsets.ModelViewSet):
 class ScoreAttributeViewSet(viewsets.ModelViewSet):
 
     model = ScoreAttribute
+
+
+class ProjectScoreAttribute(viewsets.ModelViewSet):
+
+    model = ProjectScoreAttribute
