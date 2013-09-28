@@ -9,6 +9,12 @@ class ProjectListView(ListView):
     model = Project
     context_object_name = "projects"
 
+    def get_queryset(self):
+        qs = super(ProjectListView, self).get_queryset()
+        if "name" in self.request.GET:
+            qs = qs.filter(name__icontains=self.request.GET.get("name"))
+        return qs
+
 
 class ProjectAddView(CreateView):
     template_name = "project/project_add.html"
