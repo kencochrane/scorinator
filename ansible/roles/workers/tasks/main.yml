@@ -19,6 +19,8 @@
     - python-psycopg2
     - python-pip
     - python-dev
+    - python-virtualenv
+    - git
   tags:
     - aptget
 
@@ -33,11 +35,11 @@
   tags:
     - gitpull
 
+- name: scorinator link
+  action: file src={{project_git_checkout}}-{{project_version}} path={{project_git_checkout}} owner=scorinator group=scorinator mode=0755 state=link
+
 - name: scorinator pip install
-  action: pip requirements={{project_git_checkout}}/requirements.txt virtualenv={{project_ve}}
+  action: pip requirements={{project__worker_root}}/requirements.txt virtualenv={{project_ve}}
 
 - name: app permissions
   action: file path={{project_git_checkout}}-{{project_version}} owner=scorinator group=scorinator mode=0755 recurse=yes state=directory
-
-- name: scorinator link
-  action: file src={{project_git_checkout}}-{{project_version}} path={{project_git_checkout}} owner=scorinator group=scorinator mode=0755 state=link

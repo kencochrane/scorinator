@@ -1,0 +1,19 @@
+---
+- name: "Install Redis server: ${redis.package}"
+  apt: pkg=${redis.package} state=installed update-cache=yes
+  tags:
+    - redis
+
+- name: generate redis config file
+  template:
+    src=redis.conf
+    dest=/etc/redis/redis.conf
+  notify: Restart Redis
+  tags:
+    - redis
+
+# Ensure Redis server is running
+- name: "Ensure Redis server is running"
+  service: name=${redis.package} state=started
+  tags:
+    - redis

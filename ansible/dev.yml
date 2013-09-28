@@ -2,13 +2,15 @@
 - hosts: dev-servers
   sudo: yes
   user: root
+  vars_files:
+    - scorinator_vars.yml
   roles:
     - role: common
       tags:
           - common
-    - role: postgres
+    - role: redis
       tags:
-          - postgres
-    - role: django
+          - redis
+    - role: workers
       tags:
-          - django
+          - workers

@@ -11,3 +11,4 @@ _build
 scorinator.db
 reports
 static
+scorinator_vars.yml
