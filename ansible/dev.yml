@@ -1,0 +1,14 @@
+---
+- hosts: dev-servers
+  sudo: yes
+  user: root
+  roles:
+    - role: common
+      tags:
+          - common
+    - role: postgres
+      tags:
+          - postgres
+    - role: django
+      tags:
+          - django

@@ -1,0 +1,3 @@
+---
+- name: service scorinator start/enable
+  action: service name=scorinator state=restarted enabled=yes

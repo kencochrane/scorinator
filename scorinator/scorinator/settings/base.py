@@ -1,4 +1,4 @@
-# Django settings for proveiiit project.
+# Django settings for scorinator project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
