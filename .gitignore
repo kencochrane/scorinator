@@ -8,4 +8,5 @@ _templates
 _static
 _build
 scorinator.db
+reports
 static
