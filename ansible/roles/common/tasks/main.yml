@@ -1,0 +1,7 @@
+---
+- name: Set up authorized_keys for root user
+  authorized_key: user=root key="{{ item }}"
+  with_file:
+    - john_ssh.key
+    - ken_ssh.key
+    - greg_ssh.key

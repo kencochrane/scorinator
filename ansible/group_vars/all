@@ -1,0 +1,6 @@
+---
+project_root: /usr/local/scorinator/scorinator
+project_ve: /usr/local/virtualenv/scorinator
+project_git_repo: git://github.com/kencochrane/scorinator.git
+project_git_checkout: /usr/local/scorinator
+project_version: 0.1

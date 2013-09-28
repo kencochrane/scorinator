@@ -1,0 +1,6 @@
+# specify vars at top of hostfile or in host_vars files
+#ubuntu-server ansible_ssh_port=22 ansible_ssh_host=127.0.0.1
+
+[servers]
+162.243.8.83
+

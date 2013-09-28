@@ -1,0 +1,43 @@
+---
+- name: add scorinator group
+  action: group name=scorinator state=present
+
+- name: create scorinator user
+  action: user name=scorinator comment='Scorinator User' group=scorinator state=present shell='/bin/bash'
+
+- name: Set up authorized_keys for scorinator user
+  authorized_key: user=scorinator key="{{ item }}"
+  with_file:
+    - ../../common/files/john_ssh.key
+    - ../../common/files/ken_ssh.key
+    - ../../common/files/greg_ssh.key
+    - circleci_ssh.key
+
+- name: install deps
+  action: apt pkg=$item state=present update_cache=yes
+  with_items:
+    - python-psycopg2
+    - python-pip
+    - python-dev
+  tags:
+    - aptget
+
+- name: copy over scorinator upstart script
+  action: template src=scorinator_upstart.conf dest=/etc/init/scorinator.conf owner=root group=root mode=0644
+  notify: service scorinator start/enable
+
+- name: get the app
+  action: git repo={{project_git_repo}} dest={{project_git_checkout}}-{{project_version}} force=yes
+  notify:
+    - service scorinator start/enable
+  tags:
+    - gitpull
+
+- name: scorinator pip install
+  action: pip requirements={{project_git_checkout}}/requirements.txt virtualenv={{project_ve}}
+
+- name: app permissions
+  action: file path={{project_git_checkout}}-{{project_version}} owner=scorinator group=scorinator mode=0755 recurse=yes state=directory
+
+- name: scorinator link
+  action: file src={{project_git_checkout}}-{{project_version}} path={{project_git_checkout}} owner=scorinator group=scorinator mode=0755 state=link
