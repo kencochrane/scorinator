@@ -1,6 +1,11 @@
 import unittest
+from django.core.urlresolvers import reverse
 
-from django.test import RequestFactory
+from django.test import RequestFactory, TestCase, Client
+from django_dynamic_fixture import G
+
+from project.models import Project
+from score.models import ProjectScore
 
 from..views import HomeView
 
@@ -28,3 +33,20 @@ class HomeTestCase(unittest.TestCase):
     def test_context_data(self):
         self.assertIsNotNone(self.context_data['featured_project'])
         self.assertIsNotNone(self.context_data['top_scores'])
+
+
+class TestHomeView(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_get(self):
+        response = self.client.get(reverse("home"))
+        assert response.status_code == 200
+
+    def test_featured_project(self):
+        p = G(Project, name="Awesome Project", slug="project")
+        G(ProjectScore, project=p, total_score="55")
+
+        response = self.client.get(reverse("home"))
+        assert response.status_code == 200
+        assert "Awesome Project" in response.content

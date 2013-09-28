@@ -1,1 +1,1 @@
-from .models import HomeTestCase
+from .models import HomeTestCase, TestHomeView
