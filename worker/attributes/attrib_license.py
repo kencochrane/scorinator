@@ -13,10 +13,10 @@ def run(project):
     found = False
 
     for f in files:
-        if f.lower().startswith('readme'):
+        if f.lower().startswith('license'):
             found = True
             break
 
     return {
-            'name': 'has_readme', 'value_b': found
+            'name': 'has_license', 'value_b': found
             }
