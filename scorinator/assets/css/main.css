@@ -6,6 +6,10 @@ body {
     background: url(../img/math-equations.jpg);
 }
 
+.page-header {
+    border-bottom: 1px solid #ccc;
+}
+
 #content {
     padding-top: 30px;
     background: url(../img/paper_3.png);
@@ -14,4 +18,8 @@ body {
 
 footer {
     padding-bottom: 80px;
+}
+
+hr {
+    border: 1px solid #cccccc;
 }
