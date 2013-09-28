@@ -15,7 +15,9 @@
             <td>Name</td>
             <td>Repo URL</td>
             <td>Score</td>
-            <td>Action</td>
+            {% if user.is_superuser %}
+              <td>Action</td>
+            {% endif %}
           </tr>
         </thead>
         <tbody>
@@ -30,13 +32,15 @@
               <a href="{{ project.repo_url }}">{{ project.repo_url }}</a>
             </td>
             <td>{{ project.score|display_score }}</td>
-            <td>
-              <div class="btn-group btn-group-xs">
-                <a href="" class="btn btn-default">
-                  <i class="glyphicon glyphicon-edit"></i> Edit
-                </a>
-              </div>
-            </td>
+            {% if user.is_superuser %}
+              <td>
+                <div class="btn-group btn-group-xs">
+                  <a href="" class="btn btn-default">
+                    <i class="glyphicon glyphicon-edit"></i> Edit
+                  </a>
+                </div>
+              </td>
+            {% endif %}
           </tr>
           {% endfor %}
         </tbody>
