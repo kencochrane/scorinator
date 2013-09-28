@@ -10,9 +10,9 @@ psycopg2==2.5.1
 dj-database-url==0.2.2
 django-toolbelt==0.0.1
 django-bootstrap3==0.0.7
-pip install djangorestframework
-pip install markdown       # Markdown support for the browsable API.
-pip install django-filter
+djangorestframework==2.3.8
+Markdown==2.3.1
+django-filter==0.7
 
 # deployment
 Fabric==1.7.0
