@@ -1,6 +1,9 @@
 DjangoDash2013
 ==============
 
+.. image:: https://travis-ci.org/kencochrane/scorinator.png?branch=master
+  :target: https://travis-ci.org/kencochrane/scorinator
+
 .. image:: https://coveralls.io/repos/kencochrane/scorinator/badge.png?branch=master
   :target: https://coveralls.io/r/kencochrane/scorinator?branch=master
 
