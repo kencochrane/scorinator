@@ -3,5 +3,5 @@
 def run(project):
     #TODO actually check if it has a readme file
     return {
-            'has_readme': True,
+            'name': 'has_readme', 'value_b': True
             }
