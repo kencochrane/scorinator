@@ -10,4 +10,3 @@ class Project(models.Model):
 
     class Meta:
         ordering = ('name', )
-

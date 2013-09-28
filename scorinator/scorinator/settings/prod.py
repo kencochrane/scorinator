@@ -1,4 +1,4 @@
-from .base import *
+from .base import *  # NOQA
 import dj_database_url
 
 DEBUG = False
@@ -13,9 +13,10 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'filters': {
-     'require_debug_false': {
-         '()': 'django.utils.log.RequireDebugFalse'
-     }},
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'formatters': {
         'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s '
@@ -27,9 +28,9 @@ LOGGING = {
     },
     'handlers': {
         'null': {
-            'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
-            },
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -46,23 +47,23 @@ LOGGING = {
             'handlers': ['console', 'mail_admins'],
             'level': 'DEBUG',
             'propagate': True,
-            },
+        },
         'django.request': {
             'handlers': ['console', 'mail_admins'],
             'level': 'ERROR',
             'propagate': False,
-            },
+        },
         'django.db.backends': {
             'handlers': ['console', 'mail_admins'],
             'level': 'INFO',
             'propagate': False,
-            },
+        },
         # Catch All Logger -- Captures any other logging
         '': {
             'handlers': ['console', 'mail_admins'],
             'level': 'DEBUG',
             'propagate': True,
-            }
+        }
     }
 }
 

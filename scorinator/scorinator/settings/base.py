@@ -85,7 +85,6 @@ SECRET_KEY = 'e0$qpa8jvhweh_fl*qs@o^#anf+*fzd@be*-1)o!pqz(-$j(f#'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -140,9 +139,9 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'filters': {
-     'require_debug_false': {
-         '()': 'django.utils.log.RequireDebugFalse'
-     }},
+    'require_debug_false': {
+        '()': 'django.utils.log.RequireDebugFalse'
+    }},
     'formatters': {
         'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s '
@@ -151,12 +150,12 @@ LOGGING = {
         'simple': {
             'format': '%(levelname)s %(message)s'
         },
-        },
+    },
     'handlers': {
         'null': {
-            'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
-            },
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -167,9 +166,9 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'verbose',
             'filename': '/tmp/scorinator.log',
-            'maxBytes': 1024*1024*25, # 25 MB
+            'maxBytes': 1024*1024*25,  # 25 MB
             'backupCount': 5,
-            },
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
@@ -181,22 +180,22 @@ LOGGING = {
             'handlers': ['console', 'log_file', 'mail_admins'],
             'level': 'DEBUG',
             'propagate': True,
-            },
+        },
         'django.request': {
             'handlers': ['console', 'log_file', 'mail_admins'],
             'level': 'ERROR',
             'propagate': False,
-            },
+        },
         'django.db.backends': {
             'handlers': ['console', 'log_file', 'mail_admins'],
             'level': 'INFO',
             'propagate': False,
-            },
+        },
         # Catch All Logger -- Captures any other logging
         '': {
             'handlers': ['console', 'log_file', 'mail_admins'],
             'level': 'DEBUG',
             'propagate': True,
-            }
+        }
     }
 }

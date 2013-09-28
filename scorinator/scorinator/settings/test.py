@@ -1,4 +1,4 @@
-from .base import *
+from .base import *  # NOQA
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,7 +11,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-        }
+    }
 }
 
 COVERAGE_MODULE_EXCLUDES = [
