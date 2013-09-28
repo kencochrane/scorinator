@@ -16,3 +16,6 @@ cuisine==0.6.4
 # local dev
 django-debug-toolbar==0.9.4
 bpython==0.12
+
+# documentation
+Sphinx==1.2b2
