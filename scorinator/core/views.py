@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from score.models import ProjectScore
 
+
 class HomeView(TemplateView):
     template_name = "index.html"
 
