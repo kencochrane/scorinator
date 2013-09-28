@@ -8,7 +8,7 @@ body {
 
 #content {
     padding-top: 30px;
-    background-color: #fff;
+    background: url(../img/paper_3.png);
     border: 1px solid #ccc;
 }
 
