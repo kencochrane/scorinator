@@ -34,6 +34,9 @@ class Project(models.Model):
     class Meta:
         ordering = ('name', )
 
+    def __repr__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         """Need to set slug, if saving for first time"""
         if not self.pk:

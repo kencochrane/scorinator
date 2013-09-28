@@ -1,13 +1,13 @@
 import unittest
 from django.core.urlresolvers import reverse
 
-from django.test import RequestFactory, TestCase, Client
+from django.test import RequestFactory
+from django.test.client import Client
 from django_dynamic_fixture import G
 
-from project.models import Project
+from project.models import Project, set_slug
 from score.models import ProjectScore
-
-from..views import HomeView
+from core.views import HomeView
 
 
 class HomeTestCase(unittest.TestCase):
@@ -26,6 +26,7 @@ class HomeTestCase(unittest.TestCase):
                                     RequestFactory().get('/'))
         self.template_names = self.view.get_template_names()
         self.context_data = self.view.get_context_data()
+        self.client = Client()
 
     def test_get_template_names(self):
         self.assertEqual(self.template_names, ['index.html'])
@@ -35,7 +36,7 @@ class HomeTestCase(unittest.TestCase):
         self.assertIsNotNone(self.context_data['top_scores'])
 
 
-class TestHomeView(TestCase):
+class TestHomeView(unittest.TestCase):
     def setUp(self):
         self.client = Client()
 
@@ -50,3 +51,46 @@ class TestHomeView(TestCase):
         response = self.client.get(reverse("home"))
         assert response.status_code == 200
         assert "Awesome Project" in response.content
+
+
+class TestSetSlug(unittest.TestCase):
+    def setUp(self):
+        G(Project, name="test")
+
+    def test_normal(self):
+        assert "example" == set_slug("example")
+
+    def test_first_dup(self):
+        assert "test--1" == set_slug("test")
+
+    def test_next_dup(self):
+        G(Project, n=14, name="test2")
+        assert Project.objects.filter(slug="test2--13").exists() is True
+
+
+class TestProject(unittest.TestCase):
+    def test_ordering(self):
+        p = G(Project, name="AAAbc")
+        G(Project, name="zxy")
+        G(Project, name="mnc")
+
+        assert Project.objects.all()[0] == p
+
+
+class TestProjectListView(unittest.TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_get(self):
+        response = self.client.get(reverse("project.list"))
+        assert response.status_code == 200
+
+    def test_search(self):
+        G(Project, name="Super Project")
+        G(Project, name="Sucky Project")
+
+        response = self.client.get(
+            "{0}?name=super".format(reverse("project.list"))
+        )
+        assert "Super Project" in response.content
+        assert "Sucky Project" not in response.content
