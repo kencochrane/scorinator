@@ -131,6 +131,7 @@ PREREQ_APPS = (
 PROJECT_APPS = (
     'core',
     'project',
+    'score',
 )
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
