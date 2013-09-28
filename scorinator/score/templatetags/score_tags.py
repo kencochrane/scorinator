@@ -8,13 +8,13 @@ register = template.Library()
 @register.filter()
 def display_score(value):
     tag = "danger"
-    if value > 80:
+    if float(value) >= 80.0:
         tag = "success"
-    elif value > 70:
+    elif float(value) >= 70.0:
         tag = "info"
-    elif value > 60:
+    elif float(value) >= 60.0:
         tag = "primary"
-    elif value > 40:
+    elif float(value) >= 40.0:
         tag = "warning"
     return mark_safe("<span class='label label-{tag}'>{score}</span>".format(
         score=value,
