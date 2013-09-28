@@ -54,16 +54,15 @@
       </div>
     </div>
 
-    {% block jumbotron %}{% endblock jumbotron %}
-
-    <div class="container">
+    <div class="container" id="content">
+      {% block jumbotron %}{% endblock jumbotron %}
 
       {% block content %}{% endblock content %}
 
       <hr>
       {% block footer %}
       <footer>
-        <p>&copy; The Score Keepers: Ken Cochrane, John Costa, Greg Reinbach 2013</p>
+        <p>&copy; The Maineiac Score Keepers: Ken Cochrane, John Costa, Greg Reinbach 2013</p>
       </footer>
       {% endblock footer %}
     </div>
