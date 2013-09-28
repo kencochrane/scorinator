@@ -1,0 +1,18 @@
+Django==1.5.4
+South==0.8.2
+django-extensions==1.1.1
+django-model-utils==1.4.0
+Unipath==0.2.1
+django-analytical==0.15.0
+pytz==2013b
+django-annoying==0.7.7
+psycopg2==2.5.1 
+dj-database-url==0.2.2
+
+# deployment
+Fabric==1.7.0
+cuisine==0.6.4
+
+# local dev
+django-debug-toolbar==0.9.4
+bpython==0.12

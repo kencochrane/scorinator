@@ -1,4 +1,10 @@
 *.log
 *.pot
 *.pyc
-local_settings.py
+*.idea
+coverage
+.DS_Store
+_templates
+_static
+_build
+scorinator.db

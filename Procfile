@@ -1,0 +1,1 @@
+web: python scorinator/manage.py collectstatic --noinput --settings=scorinator.settings.prod; python scorinator/manage.py run_gunicorn -w 3 -b 0.0.0.0:$PORT --settings=scorinator.settings.prod
