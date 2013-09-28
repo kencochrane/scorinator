@@ -1,8 +1,8 @@
 deployment:
   staging:
     branch: master
-    heroku:
-      appname: scorinator
+    #heroku:
+    #  appname: scorinator
     commands:
       - heroku maintenance:on --app scorinator
       - heroku run python scorinator/manage.py syncdb --app scorinator --noinput
