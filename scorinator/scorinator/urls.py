@@ -1,6 +1,13 @@
 from django.conf.urls import patterns, include, url
 
+from rest_framework import routers
+
 from core.views import HomeView
+from project.viewsets import ProjectViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'projects', ProjectViewSet)
 
 urlpatterns = patterns(
     '',
@@ -9,6 +16,7 @@ urlpatterns = patterns(
 
     # TODO we may want to disable this later post development.
     #  for now, it's useful to understand what is available
+    url(r'^api/v1/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework'))
 )
