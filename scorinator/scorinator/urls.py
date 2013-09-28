@@ -4,10 +4,15 @@ from rest_framework import routers
 
 from core.views import HomeView
 from project.viewsets import ProjectViewSet
+from score.viewsets import (
+    ProjectScoreViewSet, ScoreAttributeViewSet, ProjectScoreAttribute)
 
 
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet)
+router.register(r'project-scores', ProjectScoreViewSet)
+router.register(r'score-attributes', ScoreAttributeViewSet)
+router.register(r'project-score-attributes', ProjectScoreAttribute)
 
 urlpatterns = patterns(
     '',
