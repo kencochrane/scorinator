@@ -14,14 +14,24 @@
             <td>Name</td>
             <td>Repo URL</td>
             <td>Score</td>
+            <td>Action</td>
           </tr>
         </thead>
         <tbody>
           {% for project in projects %}
           <tr>
             <td>{{ project.name }}</td>
-            <td><a href="{{ project.rep_url }}">{{ project.rep_url }}</a></td>
+            <td>
+              <a href="{{ project.repo_url }}">{{ project.repo_url }}</a>
+            </td>
             <td>Score Goes Here</td>
+            <td>
+              <div class="btn-group btn-group-xs">
+                <a href="" class="btn btn-default">
+                  <i class="glyphicon glyphicon-edit"></i> Edit
+                </a>
+              </div>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
@@ -31,6 +41,7 @@
     <div class="col-md-2">
       <p>
         <a href="{% url 'project.add' %}" class="btn btn-danger">
+          <i class="glyphicon glyphicon-plus"></i>
           Add Project
         </a>
       </p>
