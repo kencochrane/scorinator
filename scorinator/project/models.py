@@ -48,3 +48,9 @@ class Project(models.Model):
 
     def score(self):
         return random.randint(0, 100)
+
+    def __repr__(self):
+        return self.__str__
+
+    def __str__(self):
+        return self.name
