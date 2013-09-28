@@ -6,7 +6,9 @@ from..views import HomeView
 
 
 class HomeTestCase(unittest.TestCase):
-
+    """ Sample approach from: http://tech.novapost.fr/static/images/slides/
+            djangocon-europe-2013-unit-test-class-based-views.html#slide13
+    """
     def setup_view(self, view, request, *args, **kwargs):
         """*args and **kwargs you could pass to ``reverse()``."""
         view.request = request
