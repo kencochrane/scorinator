@@ -1,3 +1,5 @@
+import random
+
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -15,3 +17,6 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return reverse("project.detail", args=[self.slug])
+
+    def score(self):
+        return random.randint(0, 100)
