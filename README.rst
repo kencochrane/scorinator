@@ -1,6 +1,10 @@
 DjangoDash2013
 ==============
 
+.. image:: https://coveralls.io/repos/kencochrane/scorinator/badge.png?branch=master
+  :target: https://coveralls.io/r/kencochrane/scorinator?branch=master
+
+
 Authors
 -------
 - Ken Cochrane
