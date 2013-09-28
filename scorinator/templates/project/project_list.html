@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table class="table table-ordered table-striped table-hover">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Repo URL</td>
+        <td>Score</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for project in projects %}
+        <tr>
+          <td>{{ project.name }}</td>
+          <td><a href="{{ project.rep_url }}">{{ project.rep_url }}</a></td>
+          <td>Score Goes Here</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
