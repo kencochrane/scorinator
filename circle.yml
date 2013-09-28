@@ -7,4 +7,5 @@ deployment:
       - heroku maintenance:on --app scorinator
       - heroku run python scorinator/manage.py syncdb --app scorinator --noinput
       - heroku run python scorinator/manage.py migrate --app scorinator --noinput
+      - heroku run python scorinator/manage.py collectstatic --app scorinator --noinput
       - heroku maintenance:off --app scorinator
