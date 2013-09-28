@@ -126,8 +126,11 @@ PREREQ_APPS = (
     'django.contrib.admin',
     'south',
 )
+
 PROJECT_APPS = (
+    'core',
 )
+
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
 LOGGING = {

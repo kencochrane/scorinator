@@ -4,9 +4,10 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
+from core.views import HomeView
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'scorinator.views.home', name='home'),
+    url(r'^$', HomeView.as_view(), name='home'),
     # url(r'^scorinator/', include('scorinator.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
