@@ -125,6 +125,7 @@ PREREQ_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
+    'gunicorn',
 )
 
 PROJECT_APPS = (
