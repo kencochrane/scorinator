@@ -3,10 +3,9 @@ DjangoDash2013
 
 Authors
 -------
-
-Ken Cochrane
-John Costa
-Greg Reinbach
+- Ken Cochrane
+- John Costa
+- Greg Reinbach
 
 Setup
 -----
