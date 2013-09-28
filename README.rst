@@ -1,9 +1,9 @@
 DjangoDash2013
 ==============
 
-Ken Cochrane
-Greg Reinbach
-John Costa
+- Ken Cochrane
+- John Costa
+- Greg Reinbach
 
 Setup
 -----
