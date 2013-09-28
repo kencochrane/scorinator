@@ -125,6 +125,7 @@ PREREQ_APPS = (
     'django.contrib.admin',
     'south',
     'gunicorn',
+    'bootstrap3',
 )
 
 PROJECT_APPS = (
