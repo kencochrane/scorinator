@@ -4,6 +4,9 @@ from score.templatetags.score_tags import display_score
 
 
 class TestDisplayScore(TestCase):
+    def test_string(self):
+        assert "?" in display_score("")
+
     def test_danger(self):
         assert "danger" in display_score("30")
 
