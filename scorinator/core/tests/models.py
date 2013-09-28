@@ -1,8 +1,13 @@
 import unittest
 
+from django.core.urlresolvers import reverse
 from django.test import RequestFactory
+from django.test.client import Client
+from django_dynamic_fixture import G
 
-from..views import HomeView
+from project.models import Project
+from score.models import ProjectScore
+from core.views import HomeView
 
 
 class HomeTestCase(unittest.TestCase):
@@ -21,6 +26,7 @@ class HomeTestCase(unittest.TestCase):
                                     RequestFactory().get('/'))
         self.template_names = self.view.get_template_names()
         self.context_data = self.view.get_context_data()
+        self.client = Client()
 
     def test_get_template_names(self):
         self.assertEqual(self.template_names, ['index.html'])
@@ -28,3 +34,11 @@ class HomeTestCase(unittest.TestCase):
     def test_context_data(self):
         self.assertIsNotNone(self.context_data['featured_project'])
         self.assertIsNotNone(self.context_data['top_scores'])
+
+    def test_featured_project(self):
+        p = G(Project, name="Super Project", slug="project")
+        G(ProjectScore, project=p, total_score="55")
+
+        response = self.client.get(reverse("home"))
+        assert response.status_code == 200
+        assert "Super Project" in response.content
