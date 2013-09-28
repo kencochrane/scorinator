@@ -23,11 +23,11 @@ class TestSetSlug(TestCase):
 
 class TestProject(TestCase):
     def test_ordering(self):
-        G(Project, name="abc")
+        p = G(Project, name="AAAbc")
         G(Project, name="zxy")
         G(Project, name="mnc")
 
-        assert [p.name for p in Project.objects.all()] == ['abc', 'mnc', 'zxy']
+        assert Project.objects.all()[0] == p
 
 
 class TestProjectListView(TestCase):
@@ -37,3 +37,13 @@ class TestProjectListView(TestCase):
     def test_get(self):
         response = self.client.get(reverse("project.list"))
         assert response.status_code == 200
+
+    def test_search(self):
+        G(Project, name="Super Project")
+        G(Project, name="Sucky Project")
+
+        response = self.client.get(
+            "{0}?name=super".format(reverse("project.list"))
+        )
+        assert "Super Project" in response.content
+        assert "Sucky Project" not in response.content
