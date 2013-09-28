@@ -12,8 +12,14 @@
         {% csrf_token %}
         {% bootstrap_form form %}
         <div class="form-actions">
-          <button type="submit" class="btn btn-success">Add Project</button>
-          <a href="{% url 'project.list' %}" class="btn btn-danger">Cancel</a>
+          <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-plus"></i>
+            Add Project
+          </button>
+          <a href="{% url 'project.list' %}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-remove"></i>
+            Cancel
+          </a>
         </div>
       </form>
     </div>

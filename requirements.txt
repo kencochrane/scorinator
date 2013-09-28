@@ -10,6 +10,9 @@ psycopg2==2.5.1
 dj-database-url==0.2.2
 django-toolbelt==0.0.1
 django-bootstrap3==0.0.7
+djangorestframework==2.3.8
+Markdown==2.3.1
+django-filter==0.7
 
 # deployment
 Fabric==1.7.0
@@ -28,3 +31,5 @@ coverage==3.6
 pep8==1.4.5
 pyflakes==0.6.1
 django-dynamic-fixture==1.6.5
+
+
