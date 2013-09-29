@@ -23,7 +23,7 @@ Requirements
 Documentation
 -------------
 
-You can build the documentation locally or `view the documentation`_ on ReadTheDocs.
+You can build the documentation locally with the following:
 
 ::
 
@@ -31,11 +31,15 @@ You can build the documentation locally or `view the documentation`_ on ReadTheD
     cd docs
     make html
 
+`Online documentation` is graciously provided by `ReadTheDocs`_.
+
+
 Project Setup
 -------------
 
 The instructions for setting up a `local development project`_.
 
 
-.. _view the documentation: http://scorinator.readthedocs.org/en/latest/
+.. _Online documentation: http://scorinator.readthedocs.org/en/latest/
+.. _ReadTheDocs: https://readthedocs.org/
 .. _local development project: http://scorinator.readthedocs.org/en/latest/setup.html#setting-up-a-local-development-environment
