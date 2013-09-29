@@ -1,5 +1,9 @@
 import os
 
+ATTRIBUTE_SLUG = 'has_license'
+WEIGHT = 10
+
+
 def run(project):
     """ Look to see if a project has a readme file """
     proj_dir = project.get('project_directory', None)
@@ -18,5 +22,16 @@ def run(project):
             break
 
     return {
-            'name': 'has_license', 'value_b': found
+            'name': ATTRIBUTE_SLUG, 'value_b': found
             }
+
+
+def score(project):
+    """Score the attribute for project"""
+    svalue = 0
+    for attribute in project:
+        if attribute.get('name', False) == ATTRIBUTE_SLUG:
+            if bool(attribute['value_b']):
+                svalue = WEIGHT
+                break
+    return (ATTRIBUTE_SLUG, svalue)

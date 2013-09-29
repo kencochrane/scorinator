@@ -1,15 +1,16 @@
 Worker
 ======
 
-The workers listens to a redis queue, and pull json objects off and processes them and sends the results back to the website via an API.
+There are 2 workers (analytics, score). Theses workers listens to redis queues, and pull json objects off and processes them, sending the results back to the website via an API.
 
 It gets the REDIS_HOST, REDIS_PORT, REDIS_PASSWORD via env variables that need to be set in order to run.
 
 
-Get it working
---------------
+Get them working
+----------------
 
 $ python run.py
+$ ptyhon calculator.py
 
 
 Adding a new attribute to the worker
