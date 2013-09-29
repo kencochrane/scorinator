@@ -155,7 +155,11 @@ def run():
         queue_analytics_daemon(handle_job)
     except Exception as e:
         (etype, value, tb) = sys.exc_info()
+        print(etype)
+        print(value)
+        print(tb)
         trace_exception = ''.join(format_exception(etype, value, tb))
+        print(trace_exception)
         logger.error('exception', "ERROR: {0}".format(trace_exception))
         logger.error(e)
 
