@@ -3,7 +3,8 @@ import random
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.text import slugify
-
+from core.queue import enqueue
+import json
 
 def set_slug(name):
     # make sure there are no duplicate slugs
@@ -51,6 +52,23 @@ class Project(models.Model):
             return pscore.total_score
         else:
             return pscore
+
+    @property
+    def dict_val(self):
+        """ return object as a dict """
+        return {'name': self.name, 
+                'repo_id': self.pk,
+                'repo_url': self.repo_url,
+                'slug': self.slug}
+
+    @property
+    def json_val(self):
+        """ Get the json version of this project """
+        return json.dumps(self.dict_val)
+
+    def rebuild_score(self):
+        """ Queue up a build request for this project """
+        return enqueue(self.json_val)
 
     def __repr__(self):
         return self.__str__()
