@@ -75,7 +75,7 @@ def run_scorer(project):
 def post_job(project, post_results):
     """Total the score and send result to api"""
     total = 0
-    for attribute, score in post_results:
+    for attribute, score, __, __ in post_results:
         total += score
     logger.info('total score: {0}'.format(total))
     project_id = project.get('project', {}).get('project_id', None)
