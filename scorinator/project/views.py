@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView
 
 from project.forms import ProjectForm
 from project.models import Project
-from scorinator.score.models import ProjectScore
+from score.models import ProjectScore
 
 
 class ProjectBuildView(DetailView):
