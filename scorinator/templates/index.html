@@ -14,9 +14,11 @@
         <h2>
           {{ featured_project.name }}
           {{ featured_project.score|display_score }}
-          <a href="{{ featured_project.repo_url }}">
-            {{ featured_project.repo_url }}
-          </a>
+          <small>
+            <a href="{{ featured_project.repo_url }}">
+              {{ featured_project.repo_url }}
+            </a>
+          </small>
         </h2>
       </div>
     </div>
