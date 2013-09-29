@@ -88,13 +88,10 @@ def run_analytics(project):
             # if the module returned a list, process one at a time.
             for res in result:
                 new_result = process_result(mod, project, res)
-                print(new_result)
                 full_results.append(new_result)
         else:
             # it was a dict result process like normal.
-            print(result)
             new_result = process_result(mod, project, result)
-            print(new_result)
             full_results.append(new_result)
     return full_results
 
