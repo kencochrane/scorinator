@@ -3,6 +3,7 @@ deployment:
     branch: master
     commands:
       - heroku maintenance:on --app scorinator
+      - git push git@heroku.com:scorinator.git $CIRCLE_SHA1:master
       - heroku run python scorinator/manage.py syncdb --app scorinator --noinput
       - heroku run python scorinator/manage.py migrate --app scorinator --noinput
       - heroku run python scorinator/manage.py collectstatic --app scorinator --noinput
