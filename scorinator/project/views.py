@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 
 from project.forms import ProjectForm
 from project.models import Project
+from score.models import ProjectScore
 
 
 class ProjectBuildView(DetailView):
@@ -67,10 +68,11 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         from score.models import ProjectScoreAttribute
-        if self.object.score:
+        project_score = ProjectScore.objects.latest_for_project(self.object.pk)
+        if project_score:
             kwargs.update(
                 score_breakdown=ProjectScoreAttribute.objects.for_score(
-                    self.object.pk
+                    project_score.pk
                 )
             )
         return super(ProjectDetailView, self).get_context_data(**kwargs)
