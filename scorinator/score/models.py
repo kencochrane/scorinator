@@ -4,12 +4,13 @@ from project.models import Project
 
 class ProjectScoreManager(models.Manager):
     def top(self, limit=10):
-        return self.get_query_set(total_score__isnull=False)[0:limit]
+        return self.get_query_set().filter(total_score__isnull=False)[0:limit]
 
     def latest_for_project(self, project_id):
         try:
             latest = self.get_query_set().filter(
-                project__pk=project_id, total_score__isnull=False
+                project__pk=project_id,
+                total_score__isnull=False
             ).order_by("last_updated")[0]
         except IndexError:
             latest = None
