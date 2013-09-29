@@ -46,6 +46,12 @@
             </td>
             <td>{{ score.score_value|display_score }}</td>
           </tr>
+          {% empty %}
+          <tr>
+              <td colspan="2">
+                  Sorry, no score attributes.
+              </td>
+          </tr>
           {% endfor %}
         </tbody>
       </table>
