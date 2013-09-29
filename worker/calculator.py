@@ -53,22 +53,24 @@ def run_module(mod, *args):
     return result
 
 
-def process_result(mod, project, result):
+def process_result(mod, project, results):
     """ given a result dictionary process it """
     logger.info('{0}: finished'.format(mod.__name__))
-    for hook in load_modules('score_hooks', 'hook'):
-        run_module(hook, project, result)
+    for result in results:
+        for hook in load_modules('score_hooks', 'hook'):
+            run_module(hook, project, result)
 
 
 def run_scorer(project):
     full_results = []
     for mod in load_modules('attributes', 'attrib'):
-        result = run_module(mod, project.get('results', []))
-        if not result:
-            logger.error('{0}: did not return any result'.format(mod.__name__))
+        results = run_module(mod, project.get('results', []))
+        if not results:
+            logger.error('{0}: did not return any results'.format(mod.__name__))
             continue
-        full_results.append(result)
-        process_result(mod, project, result)
+        for result in results:
+            full_results.append(result)
+        process_result(mod, project, results)
     return full_results
 
 
