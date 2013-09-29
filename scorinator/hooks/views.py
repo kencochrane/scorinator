@@ -1,14 +1,13 @@
 import json
 import logging
 
-from django.conf import settings
 from django.views.decorators.csrf import csrf_view_exempt
-from django.http import (HttpResponse, HttpResponseRedirect, Http404,
-                         HttpResponseNotFound)
+from django.http import (HttpResponse)
 
 from project.models import Project
 
 log = logging.getLogger(__name__)
+
 
 @csrf_view_exempt
 def github_hook(request):
@@ -24,7 +23,7 @@ def github_hook(request):
         try:
             try:
                 data = json.loads(request.POST['payload'])
-            except ParseError as exc:
+            except Exception as exc:
                 log.debug("(Github) parse request error = {0}".format(exc))
                 return HttpResponse('Invalid payload')
             log.debug("-----")
@@ -34,13 +33,13 @@ def github_hook(request):
             name = repo.get('name', None)
             url = repo.get('url', "")
             url = url.replace('http://', 'https://')
-            branch = obj.get('ref', "").replace('refs/heads/', '')
+            branch = data.get('ref', "").replace('refs/heads/', '')
             log.info("(Github Build) %s:%s" % (url, branch))
 
             try:
                 project = Project.objects.get(repo_url=url)
                 log.info("We have the project already {0}".format(project))
-            except Project.DoesNotExist as dne:
+            except Project.DoesNotExist:
                 log.info("New Project")
                 project = Project()
                 project.repo_url = url
