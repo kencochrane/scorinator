@@ -36,3 +36,8 @@ Setup
 5. run server
 
     $ python manage.py runserver --settings=scorinator.settings.local
+
+Docs
+----
+
+http://scorinator.readthedocs.org/en/latest/
