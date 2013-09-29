@@ -89,7 +89,7 @@ class Project(models.Model):
     def recalculate_score(self):
         """ Queue up a recalculate request for this project """
         from score.models import ProjectScoreAttribute
-        results = [x.results for x in ProjectScoreAttribute.objects.filter(
+        results = [{x.score_attribute.slug: x.result} for x in ProjectScoreAttribute.objects.filter(
             project_score__project__pk=self.pk)]
         data = {'project': self.dict_val, 'results': results}
         return enqueue_score(json.dumps(data))
