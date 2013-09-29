@@ -74,8 +74,8 @@ def process_result(mod, project, result):
     result['timestamp'] = int(time.time())
     logger.info('{0}: finished'.format(mod.__name__))
     for hook in load_modules('hooks', 'hook'):
-        run_module(hook, project, result.copy())
-
+        result = run_module(hook, project, result)
+    return result
 
 def run_analytics(project):
     full_results = []
@@ -87,12 +87,15 @@ def run_analytics(project):
         if isinstance(result, list):
             # if the module returned a list, process one at a time.
             for res in result:
-                full_results.append(res)
-                process_result(mod, project, res)
+                new_result = process_result(mod, project, res)
+                print(new_result)
+                full_results.append(new_result)
         else:
             # it was a dict result process like normal.
-            full_results.append(result)
-            process_result(mod, project, result)
+            print(result)
+            new_result = process_result(mod, project, result)
+            print(new_result)
+            full_results.append(new_result)
     return full_results
 
 

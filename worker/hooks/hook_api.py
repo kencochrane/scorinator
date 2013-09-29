@@ -19,7 +19,8 @@ def send_score(score_attrib_id, project_score_id, value):
     }
     r = requests.post("{0}project-score-attributes/".format(API_URL),
                       data=payload, auth=AUTH)
-    logger.debug(r.text)
+    logger.info(r.json())
+    return r.json()
 
 
 def run(project, result):
@@ -34,7 +35,9 @@ def run(project, result):
     value = result.get('value', None)
 
     if score_attrib_id and project_score_id and value:
-        send_score(score_attrib_id, project_score_id, value)
+        res = send_score(score_attrib_id, project_score_id, value)
+        result['project_score_attribute_id'] = res.get('id')
     else:
         logger.debug("Skip")
     logger.debug("Done")
+    return result
