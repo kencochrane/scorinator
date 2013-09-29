@@ -42,6 +42,7 @@ def queue_analytics_daemon(func):
 def queue_score_daemon(func):
     """ pass in the function that you want to process the
         result from the queue with."""
+    logger.info("start queue_score_daemon")
     while 1:
         msg = get_redis().blpop(QUEUE_SCORE_KEY)
         func(msg[1])
