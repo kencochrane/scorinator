@@ -17,9 +17,34 @@
     </h1>
   </div>
 
-  <p>
-    <a href="{{ project.repo_url }}">{{ project.repo_url }}</a></p>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <p>
+        <a href="{{ project.repo_url }}">{{ project.repo_url }}</a>
+      </p>
 
-  <p>{{ project.description }}</p>
-
+      <p>{{ project.description }}</p>
+    </div>
+    <div class="col-md-6 col-md-offset-1">
+      <h3>Score Breakdown</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <td>Attribute</td>
+            <td>Score</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for score in score_breakdown %}
+          <tr>
+            <td>
+              <strong>{{ score.score_attribute.name }}</strong>
+            </td>
+            <td>{{ score.score_value|display_score }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock content %}

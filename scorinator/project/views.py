@@ -25,3 +25,13 @@ class ProjectAddView(CreateView):
 class ProjectDetailView(DetailView):
     template_name = "project/project_detail.html"
     model = Project
+
+    def get_context_data(self, **kwargs):
+        from score.models import ProjectScoreAttribute
+        if self.object.score:
+            kwargs.update(
+                score_breakdown=ProjectScoreAttribute.objects.for_score(
+                    self.object.pk
+                )
+            )
+        return super(ProjectDetailView, self).get_context_data(**kwargs)

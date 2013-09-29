@@ -6,6 +6,15 @@ class ProjectScoreManager(models.Manager):
     def top(self, limit=10):
         return self.get_query_set()[0:limit]
 
+    def latest_for_project(self, project_id):
+        try:
+            latest = self.get_query_set().filter(
+                project__pk=project_id
+            ).order_by("last_updated")[0]
+        except IndexError:
+            latest = None
+        return latest
+
 
 class ProjectScore(models.Model):
     project = models.ForeignKey(Project)
@@ -25,8 +34,15 @@ class ScoreAttribute(models.Model):
     slug = models.SlugField(max_length=50)
 
 
+class ProjectScoreAttributeManager(models.Manager):
+    def for_score(self, project_score_id):
+        return self.get_query_set().filter(project_score__pk=project_score_id)
+
+
 class ProjectScoreAttribute(models.Model):
     score_attribute = models.ForeignKey(ScoreAttribute)
     project_score = models.ForeignKey(ProjectScore)
     score_value = models.DecimalField(max_digits=8, decimal_places=2)
     result = models.TextField()
+
+    objects = ProjectScoreAttributeManager()

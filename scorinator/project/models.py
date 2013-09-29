@@ -34,9 +34,6 @@ class Project(models.Model):
     class Meta:
         ordering = ('name', )
 
-    def __repr__(self):
-        return self.name
-
     def save(self, *args, **kwargs):
         """Need to set slug, if saving for first time"""
         if not self.pk:
@@ -46,11 +43,13 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse("project.detail", args=[self.slug])
 
+    @property
     def score(self):
-        return random.randint(0, 100)
+        from score.models import ProjectScore
+        return ProjectScore.objects.latest_for_project(self.pk).total_score
 
     def __repr__(self):
-        return self.__str__
+        return self.__str__()
 
     def __str__(self):
         return self.name
