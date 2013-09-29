@@ -150,6 +150,9 @@ REST_FRAMEWORK = {
     )
 }
 
+LOGIN_REDIRECT_URL = "/api/v1/"
+LOGIN_URL = "/api-auth/login/"
+LOGOUT_URL = "/api-auth/logout/"
 
 LOGGING = {
     'version': 1,
