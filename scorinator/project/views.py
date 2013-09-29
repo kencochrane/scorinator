@@ -21,6 +21,10 @@ class ProjectAddView(CreateView):
     form_class = ProjectForm
     model = Project
 
+    def form_valid(self, form):
+        form.instance.repo_url = form.cleaned_data['repo_url']
+        return super(ProjectAddView, self).form_valid(form)
+
 
 class ProjectDetailView(DetailView):
     template_name = "project/project_detail.html"

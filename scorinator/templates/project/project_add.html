@@ -15,10 +15,10 @@
           <label>Github Repo</label>
           <div class="input-group">
             <span class="input-group-addon">https://github.com/</span>
-            <input class="form-control" id="id_url" max_length="150" name="url" placeholder="[username]/[project_name]" type="text" />
+            <input class="form-control" id="id_url_part" max_length="150" name="url_part" placeholder="[username]/[project_name]" type="text" value="{% if form.url_part.value %}{{ form.url_part.value }}{% else %}{{ form.url_part.initial }}{% endif %}" />
           </div>
-          {% if 'url' in form.errors.keys %}
-              {% for error in form.errors.url %}
+          {% if 'url_part' in form.errors.keys %}
+              {% for error in form.errors.url_part %}
                   <span class="help-block">{{ error }}</span>
               {% endfor %}
           {% endif %}
