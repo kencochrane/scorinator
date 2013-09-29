@@ -1,6 +1,6 @@
 import requests
 
-from ..auth import AUTH, API_URL, get_score_attribute
+from api import AUTH, API_URL, get_score_attribute
 
 
 def send_score(score_attrib_id, project_score_id, value):
