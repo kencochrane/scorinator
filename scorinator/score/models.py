@@ -4,12 +4,13 @@ from project.models import Project
 
 class ProjectScoreManager(models.Manager):
     def top(self, limit=10):
-        return self.get_query_set()[0:limit]
+        return self.get_query_set().filter(total_score__isnull=False)[0:limit]
 
     def latest_for_project(self, project_id):
         try:
             latest = self.get_query_set().filter(
-                project__pk=project_id
+                project__pk=project_id,
+                total_score__isnull=False
             ).order_by("last_updated")[0]
         except IndexError:
             latest = None
@@ -18,7 +19,8 @@ class ProjectScoreManager(models.Manager):
 
 class ProjectScore(models.Model):
     project = models.ForeignKey(Project)
-    total_score = models.DecimalField(max_digits=8, decimal_places=2)
+    total_score = models.DecimalField(max_digits=8, decimal_places=2,
+                                      blank=True, null=True, default=None)
     date_added = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 
