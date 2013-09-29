@@ -35,6 +35,7 @@ class ProjectScore(models.Model):
     def __str__(self):
         return "{0} {1}".format(self.project, self.total_score)
 
+
 class ScoreAttribute(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
@@ -45,6 +46,7 @@ class ScoreAttribute(models.Model):
 
     def __str__(self):
         return self.slug
+
 
 class ProjectScoreAttributeManager(models.Manager):
     def for_score(self, project_score_id):

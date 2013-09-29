@@ -11,21 +11,22 @@ from .serializers import (
 
 
 class ProjectScoreViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated,]
+    permission_classes = [permissions.IsAuthenticated, ]
     model = ProjectScore
     serializer_class = ProjectScoreSerializer
 
 
 class ScoreAttributeViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated,]
+    permission_classes = [permissions.IsAuthenticated, ]
     model = ScoreAttribute
     serializer_class = ScoreAttributeSerializer
 
 
 class ProjectScoreAttribute(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated,]
+    permission_classes = [permissions.IsAuthenticated, ]
     model = ProjectScoreAttribute
     serializer_class = ProjectScoreAttributeSerializer
+
 
 class ScoreAttributeDetail(APIView):
     """

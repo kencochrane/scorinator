@@ -7,8 +7,9 @@ from rest_framework import routers
 
 from core.views import HomeView
 from project.viewsets import ProjectViewSet
-from score.viewsets import (ProjectScoreViewSet, ScoreAttributeViewSet,
-    ProjectScoreAttribute, ScoreAttributeDetail)
+from score.viewsets import (
+    ProjectScoreViewSet, ScoreAttributeViewSet, ProjectScoreAttribute,
+    ScoreAttributeDetail)
 
 
 router = routers.DefaultRouter()
@@ -22,10 +23,10 @@ urlpatterns = patterns(
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^project/', include('project.urls')),
 
-    # TODO we may want to disable this later post development.
-    #  for now, it's useful to understand what is available
-    #TODO: this is a little hack to get the query by slug, replace with better way later
-    url(r'^api/v1/score-attributes/(?P<slug>[\w-]+)/$', ScoreAttributeDetail.as_view()),
+    #TODO: this is a little hack to get the query by slug,
+    #      replace with better way later
+    url(r'^api/v1/score-attributes/(?P<slug>[\w-]+)/$',
+        ScoreAttributeDetail.as_view()),
     url(r'^api/v1/', include(router.urls)),
     url(r'^__admin__/', include(admin.site.urls)),
 
