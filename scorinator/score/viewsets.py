@@ -8,7 +8,7 @@ from .serializers import (ScoreAttributeSerializer, ProjectScoreSerializer,
 class ProjectScoreViewSet(viewsets.ModelViewSet):
 
     model = ProjectScore
-    serializer_class = ProjectScoreAttributeSerializer
+    serializer_class = ProjectScoreSerializer
 
 
 class ScoreAttributeViewSet(viewsets.ModelViewSet):
@@ -20,4 +20,4 @@ class ScoreAttributeViewSet(viewsets.ModelViewSet):
 class ProjectScoreAttribute(viewsets.ModelViewSet):
 
     model = ProjectScoreAttribute
-    serializer_class = ProjectScoreSerializer
+    serializer_class = ProjectScoreAttributeSerializer
