@@ -7,6 +7,9 @@ DjangoDash2013 - Scorinator
 .. image:: https://coveralls.io/repos/kencochrane/scorinator/badge.png?branch=master
   :target: https://coveralls.io/r/kencochrane/scorinator?branch=master
 
+Open source project scoring.
+
+
 Authors
 -------
 - Ken Cochrane
