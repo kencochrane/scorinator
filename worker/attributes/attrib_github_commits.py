@@ -1,4 +1,3 @@
-import os
 import requests
 
 ATTRIBUTE_SLUG = 'repo_commits'
@@ -23,4 +22,15 @@ def run(project):
 
 
 def score(project):
-    return
+    results = []
+    for attribute in project:
+        svalue = 0
+        rvalue = attribute['value']
+        if attribute.get('name', False) == ATTRIBUTE_SLUG:
+            if bool(rvalue):
+                svalue = WEIGHT
+            results.append((ATTRIBUTE_SLUG,
+                            svalue,
+                            attribute.get('project_score_attribute_id'),
+                            rvalue))
+    return results
