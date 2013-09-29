@@ -54,7 +54,8 @@ class ProjectScoreAttributeManager(models.Manager):
 class ProjectScoreAttribute(models.Model):
     score_attribute = models.ForeignKey(ScoreAttribute)
     project_score = models.ForeignKey(ProjectScore)
-    score_value = models.DecimalField(max_digits=8, decimal_places=2)
+    score_value = models.DecimalField(max_digits=8, decimal_places=2,
+                                      blank=True, null=True, default=None)
     result = models.TextField()
 
     objects = ProjectScoreAttributeManager()

@@ -22,7 +22,7 @@ def run(project):
             break
 
     return {
-            'name': ATTRIBUTE_SLUG, 'value_b': found
+            'name': ATTRIBUTE_SLUG, 'value': found
             }
 
 
@@ -31,7 +31,7 @@ def score(project):
     svalue = 0
     for attribute in project:
         if attribute.get('name', False) == ATTRIBUTE_SLUG:
-            if bool(attribute['value_b']):
+            if bool(attribute['value']):
                 svalue = WEIGHT
                 break
     return (ATTRIBUTE_SLUG, svalue)
