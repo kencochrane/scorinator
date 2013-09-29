@@ -8,9 +8,6 @@ logger = logging.getLogger('worker')
 def get_redis():
     if 'REDIS_HOST' in os.environ:
         logger.info("REDIS prod server")
-        logger.info("REDIS host = {0}".format(os.environ['REDIS_HOST']))
-        logger.info("REDIS port = {0}".format(os.environ['REDIS_PORT']))
-        logger.info("REDIS password = {0}".format(os.environ['REDIS_PASSWORD']))
         redis = StrictRedis(host=os.environ['REDIS_HOST'],
                             port=int(os.environ['REDIS_PORT']),
                             db=0,
