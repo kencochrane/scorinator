@@ -9,18 +9,31 @@ if 'REDIS_HOST' in os.environ:
 else:
     redis = Redis()
 
-QUEUE_KEY = "scorinator_list"
+QUEUE_ANALYTICS_KEY = "scorinator_list"
+QUEUE_SCORE_KEY = "scorinator_score"
 
 
-def enqueue(value):
-    return redis.rpush(QUEUE_KEY, value)
+def enqueue_analytics(value):
+    return redis.rpush(QUEUE_ANALYTICS_KEY, value)
 
 
-def queue_daemon(func):
+def enqueue_score(value):
+    return redis.rpush(QUEUE_SCORE_KEY, value)
+
+
+def queue_analytics_daemon(func):
     """ pass in the function that you want to process the
         result from the queue with."""
     while 1:
-        msg = redis.blpop(QUEUE_KEY)
+        msg = redis.blpop(QUEUE_ANALYTICS_KEY)
+        func(msg[1])
+
+
+def queue_score_daemon(func):
+    """ pass in the function that you want to process the
+        result from the queue with."""
+    while 1:
+        msg = redis.blpop(QUEUE_SCORE_KEY)
         func(msg[1])
 
 
@@ -31,7 +44,7 @@ def print_worker(value):
 
 def example():
     """ Example on how to process queue with a worker"""
-    queue_daemon(print_worker)
+    queue_analytics_daemon(print_worker)
 
 
 # ## example script to kick off worker daemon
