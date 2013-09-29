@@ -9,7 +9,9 @@ PROJECT_ROOT = Path(__file__).ancestor(3)
 
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('ken', 'kencochrane@gmail.com'),
+    ('John', 'John.costa@gmail.com'),
+    ('greg', 'greg@reinbach.com'),
 )
 
 MANAGERS = ADMINS
