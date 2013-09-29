@@ -9,14 +9,14 @@ from core.views import HomeView
 from project.viewsets import ProjectViewSet
 from score.viewsets import (
     ProjectScoreViewSet, ScoreAttributeViewSet, ProjectScoreAttribute,
-    ScoreAttributeDetail)
+    ScoreAttributeDetail, ProjectScoreAttributeViewset)
 
 
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet)
 router.register(r'project-scores', ProjectScoreViewSet)
 router.register(r'score-attributes', ScoreAttributeViewSet)
-router.register(r'project-score-attributes', ProjectScoreAttribute)
+router.register(r'project-score-attributes', ProjectScoreAttributeViewset)
 
 urlpatterns = patterns(
     '',
