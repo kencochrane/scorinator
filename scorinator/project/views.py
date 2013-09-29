@@ -70,7 +70,7 @@ class ProjectDetailView(DetailView):
         if self.object.score:
             kwargs.update(
                 score_breakdown=ProjectScoreAttribute.objects.for_score(
-                    self.object.score.pk
+                    self.object.pk
                 )
             )
         return super(ProjectDetailView, self).get_context_data(**kwargs)
