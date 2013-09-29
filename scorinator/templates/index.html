@@ -8,6 +8,12 @@
       <div class="col-md-6">
         <h1>Scorinator!</h1>
         <p>Python projects rated!</p>
+        <p>
+        <a href="{% url 'project.add' %}" class="btn btn-success">
+          <i class="glyphicon glyphicon-plus"></i>
+          Add Project
+        </a>
+      </p>
       </div>
       <div class="col-md-3 col-md-offset-2" id="featured">
         Top Rated Project
@@ -28,6 +34,7 @@
 {% block content %}
   <div class="container">
     <div class="col-md-8 col-md-offset-2">
+        <h2>Recent project scores</h2>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
