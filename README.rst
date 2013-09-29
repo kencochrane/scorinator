@@ -1,5 +1,5 @@
-DjangoDash2013
-==============
+DjangoDash2013 - Scorinator
+===========================
 
 .. image:: https://travis-ci.org/kencochrane/scorinator.png?branch=master
   :target: https://travis-ci.org/kencochrane/scorinator
@@ -7,37 +7,32 @@ DjangoDash2013
 .. image:: https://coveralls.io/repos/kencochrane/scorinator/badge.png?branch=master
   :target: https://coveralls.io/r/kencochrane/scorinator?branch=master
 
-
 Authors
 -------
 - Ken Cochrane
 - John Costa
 - Greg Reinbach
 
-Setup
------
+Requirements
+------------
 
-1. Create VE
+  * Python 2.7+ (Not tested with prior versions of python)
+  * Django 1.5+ (Not tested with prior versions of django)
 
-    $ mkvirtualenv scorinator
 
-2. Install requirements
+Documentation
+-------------
 
-    $ pip install -r requirements.txt
+You can build the documentation locally or view the documentation
+here: http://scorinator.readthedocs.org/en/latest/
 
-3. SyncDB
+::
 
-    $ python manage.py syncdb --settings=scorinator.settings.local
+    pip install sphinx
+    cd docs
+    make html
 
-4. migrate
+Project Setup
+-------------
 
-    $ python manage.py migrate --settings=scorinator.settings.local
-
-5. run server
-
-    $ python manage.py runserver --settings=scorinator.settings.local
-
-Docs
-----
-
-http://scorinator.readthedocs.org/en/latest/
+The instructions for setting up a local development project: <link to RTD>
