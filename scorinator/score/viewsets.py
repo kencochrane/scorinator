@@ -1,18 +1,23 @@
 from rest_framework import viewsets
 
-from score.models import ProjectScore, ScoreAttribute, ProjectScoreAttribute
+from .models import ProjectScore, ScoreAttribute, ProjectScoreAttribute
+from .serializers import (ScoreAttributeSerializer, ProjectScoreSerializer,
+    ProjectScoreAttributeSerializer)
 
 
 class ProjectScoreViewSet(viewsets.ModelViewSet):
 
     model = ProjectScore
+    serializer_class = ProjectScoreAttributeSerializer
 
 
 class ScoreAttributeViewSet(viewsets.ModelViewSet):
 
     model = ScoreAttribute
+    serializer_class = ScoreAttributeSerializer
 
 
 class ProjectScoreAttribute(viewsets.ModelViewSet):
 
     model = ProjectScoreAttribute
+    serializer_class = ProjectScoreSerializer
