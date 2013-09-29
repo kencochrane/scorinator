@@ -5,34 +5,36 @@ from redis import Redis, StrictRedis
 
 logger = logging.getLogger('worker')
 
-
-if 'REDIS_HOST' in os.environ:
-    logger.info("REDIS host = {0}".format(os.environ['REDIS_HOST']))
-    redis = StrictRedis(host=os.environ['REDIS_HOST'],
-                        port=int(os.environ['REDIS_PORT']),
-                        db=0,
-                        password=os.environ['REDIS_PASSWORD'])
-else:
-    logger.info("REDIS host = localhost")
-    redis = Redis()
+def get_redis():
+    if 'REDIS_HOST' in os.environ:
+        logger.info("REDIS host = {0}".format(os.environ['REDIS_HOST']))
+        redis = StrictRedis(host=os.environ['REDIS_HOST'],
+                            port=int(os.environ['REDIS_PORT']),
+                            db=0,
+                            password=os.environ['REDIS_PASSWORD'])
+    else:
+        logger.info("REDIS host = localhost")
+        redis = Redis()
+    return redis
 
 QUEUE_ANALYTICS_KEY = "scorinator_list"
 QUEUE_SCORE_KEY = "scorinator_score"
 
 
 def enqueue_analytics(value):
-    return redis.rpush(QUEUE_ANALYTICS_KEY, value)
+    return get_redis().rpush(QUEUE_ANALYTICS_KEY, value)
 
 
 def enqueue_score(value):
-    return redis.rpush(QUEUE_SCORE_KEY, value)
+    return get_redis().rpush(QUEUE_SCORE_KEY, value)
 
 
 def queue_analytics_daemon(func):
     """ pass in the function that you want to process the
         result from the queue with."""
+    logger.info("start queue_analytics_daemon")
     while 1:
-        msg = redis.blpop(QUEUE_ANALYTICS_KEY)
+        msg = get_redis().blpop(QUEUE_ANALYTICS_KEY)
         func(msg[1])
 
 
@@ -40,7 +42,7 @@ def queue_score_daemon(func):
     """ pass in the function that you want to process the
         result from the queue with."""
     while 1:
-        msg = redis.blpop(QUEUE_SCORE_KEY)
+        msg = get_redis().blpop(QUEUE_SCORE_KEY)
         func(msg[1])
 
 
