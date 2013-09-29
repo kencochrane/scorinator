@@ -7,6 +7,9 @@ class TestDisplayScore(TestCase):
     def test_string(self):
         assert "?" in display_score("")
 
+    def test_none(self):
+        assert "?" in display_score(None)
+
     def test_danger(self):
         assert "danger" in display_score("30")
 

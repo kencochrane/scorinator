@@ -18,7 +18,7 @@ def display_score(value):
             tag = "primary"
         elif fvalue >= 40.0:
             tag = "warning"
-    except ValueError:
+    except (ValueError, TypeError):
         tag = "default"
         value = "?"
 
