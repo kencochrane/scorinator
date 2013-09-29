@@ -1,4 +1,3 @@
-application/vnd.github.manifold-preview
 
 import os
 import requests
