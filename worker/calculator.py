@@ -38,7 +38,7 @@ def run_module(mod, *args):
     while retry > 0:
         try:
             mod.logger = logger
-            result = mod.run(*args)
+            result = mod.score(*args)
             break
         except Exception:
             logger.exception('{0}: returned an error.'
@@ -60,19 +60,12 @@ def process_result(mod, project, result):
 def run_scorer(project):
     full_results = []
     for mod in load_modules('attributes', 'attrib'):
-        result = run_module(mod, project)
+        result = run_module(mod, project.get('results', []))
         if not result:
             logger.error('{0}: did not return any result'.format(mod.__name__))
             continue
-        if isinstance(result, list):
-            # if the module returned a list, process one at a time.
-            for res in result:
-                full_results.append(res)
-                process_result(mod, project, res)
-        else:
-            # it was a dict result process like normal.
-            full_results.append(result)
-            process_result(mod, project, result)
+        full_results.append(result)
+        process_result(mod, project, result)
     return full_results
 
 
