@@ -78,7 +78,7 @@ def post_job(project, post_results):
     for attribute, score in post_results:
         total += score
     logger.info('total score: {0}'.format(total))
-    project_id = project['project'].get('project_id', None)
+    project_id = project['project'].get('repo_id', None)
     if not project_id:
         print("No project_id :(")
         return
