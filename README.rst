@@ -35,4 +35,6 @@ here: http://scorinator.readthedocs.org/en/latest/
 Project Setup
 -------------
 
-The instructions for setting up a local development project: <link to RTD>
+The instructions for setting up a `local development project`_.
+
+.. _local development project: http://scorinator.readthedocs.org/en/latest/setup.html#setting-up-a-local-development-environment
