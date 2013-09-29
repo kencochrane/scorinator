@@ -2,6 +2,7 @@
 
 import os
 import sys
+from traceback import format_exception
 import time
 import shutil
 import logging
@@ -148,11 +149,15 @@ def handle_job(project):
 def run():
     #TODO: add multi workers to speed things up.
     try:
+        logger.info('make repo directory {0}'.format(REPO_DIR))
         mkdir_p(REPO_DIR)
+        logger.info('start daemon')
         queue_analytics_daemon(handle_job)
     except Exception as e:
+        (etype, value, tb) = sys.exc_info()
+        trace_exception = ''.join(format_exception(etype, value, tb))
+        logger.error('exception', "ERROR: {0}".format(trace_exception))
         logger.error(e)
-
 
 if __name__ == '__main__':
     logger.info('Starting worker')

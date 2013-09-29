@@ -1,12 +1,19 @@
 import os
+import logging
 from redis import Redis, StrictRedis
 
+
+logger = logging.getLogger('worker')
+
+
 if 'REDIS_HOST' in os.environ:
+    logger.info("REDIS host = {0}".format(os.environ['REDIS_HOST']))
     redis = StrictRedis(host=os.environ['REDIS_HOST'],
                         port=int(os.environ['REDIS_PORT']),
                         db=0,
                         password=os.environ['REDIS_PASSWORD'])
 else:
+    logger.info("REDIS host = localhost")
     redis = Redis()
 
 QUEUE_ANALYTICS_KEY = "scorinator_list"
