@@ -79,14 +79,17 @@ def post_job(project, post_results):
         total += score
     logger.info('total score: {0}'.format(total))
     project_id = project.get('project', {}).get('project_id', None)
-    if not project_id:
-        logger.info("No project_id :(")
+    project_score_id = project.get('project', {}).get('project_score_id', None)
+    if not project_score_id:
+        logger.info("No project_score_id :(")
         return
     payload = {
+        "project_score": project_score_id,
         "project": project_id,
         "total_score": total,
     }
-    r = requests.post("{0}project-scores/".format(API_URL),
+    r = requests.put("{0}project-scores/{1}/".format(API_URL,
+                                                     project_score_id),
                       data=payload, auth=AUTH)
     logger.debug(r.text)
 
