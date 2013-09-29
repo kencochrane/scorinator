@@ -60,7 +60,7 @@ def process_result(mod, project, result):
 def run_scorer(project):
     full_results = []
     for mod in load_modules('attributes', 'attrib'):
-        result = run_module(mod, project)
+        result = run_module(mod, project.get('results', []))
         if not result:
             logger.error('{0}: did not return any result'.format(mod.__name__))
             continue
