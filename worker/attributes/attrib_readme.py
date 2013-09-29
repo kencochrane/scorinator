@@ -28,8 +28,10 @@ def run(project):
 
 def score(project):
     """Score the attribute for project"""
+    svalue = 0
     for attribute in project:
         if attribute.get('name', False) == ATTRIBUTE_SLUG:
             if bool(attribute['value_b']):
-                return WEIGHT
-    return 0
+                svalue = WEIGHT
+                break
+    return (ATTRIBUTE_SLUG, svalue)
