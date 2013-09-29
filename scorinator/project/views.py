@@ -1,7 +1,32 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
+from django.http import HttpResponseRedirect
 from project.forms import ProjectForm
 from project.models import Project
+from annoying.decorators import render_to
+from django.core.urlresolvers import reverse
+
+
+class ProjectBuildView(DetailView):
+    template_name = "project/project_build.html"
+    model = Project
+
+    def get_object(self):
+        # Call the superclass
+        the_object = super(ProjectBuildView, self).get_object()
+        # Trigger the build
+        the_object.rebuild_score()
+        return the_object
+
+    def get_context_data(self, **kwargs):
+        from score.models import ProjectScoreAttribute
+        if self.object.score:
+            kwargs.update(
+                score_breakdown=ProjectScoreAttribute.objects.for_score(
+                    self.object.pk
+                )
+            )
+        return super(ProjectBuildView, self).get_context_data(**kwargs)
 
 
 class ProjectListView(ListView):
@@ -21,9 +46,19 @@ class ProjectAddView(CreateView):
     form_class = ProjectForm
     model = Project
 
+    # orginal way before build trigger keeping until we know both
+    # work still
+    #    def form_valid(self, form):
+    #        form.instance.repo_url = form.cleaned_data['repo_url']
+    #        return super(ProjectAddView, self).form_valid(form)
+
     def form_valid(self, form):
+        """ save and then trigger score build """
         form.instance.repo_url = form.cleaned_data['repo_url']
-        return super(ProjectAddView, self).form_valid(form)
+        obj = form.save()
+        obj.rebuild_score()
+        url = reverse('project.detail', kwargs={'slug': obj.slug})
+        return HttpResponseRedirect(url)
 
 
 class ProjectDetailView(DetailView):

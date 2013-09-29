@@ -54,19 +54,37 @@ class Project(models.Model):
     @property
     def dict_val(self):
         """ return object as a dict """
-        return {'name': self.name,
+        data = {'name': self.name,
                 'repo_id': self.pk,
                 'repo_url': self.repo_url,
                 'slug': self.slug}
+        from score.models import ProjectScore
+        pscore = ProjectScore.objects.latest_for_project(self.pk)
+        if pscore is not None:
+            data['project_score_id'] = pscore.pk
+        return data
 
     @property
     def json_val(self):
         """ Get the json version of this project """
         return json.dumps(self.dict_val)
 
+    def create_new_project_score(self):
+        from score.models import ProjectScore
+        project_score = ProjectScore()
+        project_score.project = self
+        project_score.save()
+        return project_score
+
     def rebuild_score(self):
         """ Queue up a build request for this project """
-        return enqueue_analytics(self.json_val)
+        proj_dict = self.dict_val
+        # create new score object
+        project_score = self.create_new_project_score()
+        # overwrite original one since this is a new score
+        proj_dict['project_score_id'] = project_score.pk
+        json_out = json.dumps(proj_dict)
+        return enqueue_analytics(json_out)
 
     def recalculate_score(self):
         """ Queue up a recalculate request for this project """
