@@ -12,7 +12,7 @@ class ProjectScoreManager(models.Manager):
             latest = self.get_query_set().filter(
                 project__pk=project_id,
                 total_score__isnull=False
-            ).order_by("last_updated")[0]
+            ).order_by("-last_updated")[0]
         except IndexError:
             latest = None
         return latest
