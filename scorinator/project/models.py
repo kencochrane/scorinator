@@ -1,5 +1,3 @@
-import random
-
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.text import slugify
@@ -56,7 +54,7 @@ class Project(models.Model):
     @property
     def dict_val(self):
         """ return object as a dict """
-        return {'name': self.name, 
+        return {'name': self.name,
                 'repo_id': self.pk,
                 'repo_url': self.repo_url,
                 'slug': self.slug}

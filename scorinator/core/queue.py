@@ -11,5 +11,6 @@ else:
 
 QUEUE_KEY = "scorinator_list"
 
+
 def enqueue(value):
     return redis.rpush(QUEUE_KEY, value)
