@@ -133,6 +133,7 @@ PROJECT_APPS = (
     'core',
     'project',
     'score',
+    'hooks',
 )
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS

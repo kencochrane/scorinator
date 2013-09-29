@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
+{% load staticfiles %}
 
 {% block content %}
   <div class="page-header">
@@ -36,5 +37,28 @@
         {% end_bootstrap_form_buttons %}
       </form>
     </div>
-  </div>
+    </div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2>Add a GitHub webhook</h2>
+      <p>The easiest way to add your project and keep it up to date is to add a webhook to your github repo</p>
+      <ol>
+      <li>
+        Click the "Admin" tab on your repo.<br>
+        <img src="{% static 'img/GitHub-Step1.png' %}">
+      </li>
+      <li>
+        Click on "Service Hooks".<br>
+        <img src="{% static 'img/GitHub-Step2.png' %}">
+      </li>
+      <li>
+        Click on the "Post-Receive URLs".<br>
+        <img src="{% static 'img/GitHub-Step3.png' %}">
+      </li>
+      <li>
+        Put in "<code>https://scorinator.herokuapp.com/hook/github/</code>" &amp; hit "Update Settings".
+      </li>
+    </ol>
+    </div>
+</div>
 {% endblock content %}
