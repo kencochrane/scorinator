@@ -10,6 +10,7 @@ class ProjectScoreAdmin(admin.ModelAdmin):
 class ScoreAttributeAdmin(admin.ModelAdmin):
     pass
 
+
 class ProjectScoreAttributeAdmin(admin.ModelAdmin):
     pass
 
