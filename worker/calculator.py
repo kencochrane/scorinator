@@ -5,6 +5,9 @@ import sys
 import time
 import logging
 import json
+import requests
+
+from api import AUTH, API_URL
 from queue import queue_score_daemon
 
 
@@ -69,12 +72,31 @@ def run_scorer(project):
     return full_results
 
 
+def post_job(project, post_results):
+    """Total the score and send result to api"""
+    total = 0
+    for attribute, score in post_results:
+        total += score
+    logger.info('total score: {0}'.format(total))
+    project_id = project['project'].get('project_id', None)
+    if not project_id:
+        print("No project_id :(")
+        return
+    payload = {
+        "project_id": project_id,
+        "total_score": total,
+    }
+    r = requests.post("{0}project-score/".format(API_URL),
+                      data=payload, auth=AUTH)
+    print(r.text)
+
 def handle_job(project):
     logger.info('Starting... {0}'.format(project))
     project = json.loads(project)
     logger.debug("project json = {0}".format(project))
-    result = run_scorer(project)
-    logger.info('Finished... {0}'.format(result))
+    results = run_scorer(project)
+    post_job(project, results)
+    logger.info('Finished... {0}'.format(results))
 
 
 def run():
