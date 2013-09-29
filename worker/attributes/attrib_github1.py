@@ -1,4 +1,3 @@
-import os
 import requests
 
 ATTRIBUTE_SLUG_REPO_WATCHERS = 'repo_watchers'
@@ -31,4 +30,18 @@ def run(project):
             ]
 
 def score(project):
-    return
+    results = []
+    for attribute in project:
+        svalue = 0
+        rvalue = attribute['value']
+        attribute_slug = attribute.get('name', False)
+        if attribute_slug in [ATTRIBUTE_SLUG_REPO_WATCHERS,
+                              ATTRIBUTE_SLUG_REPO_FORKS,
+                              ATTRIBUTE_SLUG_REPO_OPEN_ISSUES]:
+            if bool(rvalue):
+                svalue = WEIGHT
+            results.append((attribute_slug,
+                            svalue,
+                            attribute.get('project_score_attribute_id'),
+                            rvalue))
+    return results

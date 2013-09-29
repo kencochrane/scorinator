@@ -1,4 +1,3 @@
-import os
 import datetime
 import requests
 import time
@@ -41,6 +40,19 @@ def run(project):
 def score(project):
     # day's might be -1 if there's a utc problem. We should treat this as 0
 
-    #if commit in last day 10 points, last week 9 points last month 8 points
+    # if commit in last day 10 points, last week 9 points last month 8 points
     # last 3 months 5 points, 6 months = 3, more then 6 , 0 points
-    return
+    def determine_score(value):
+        return WEIGHT
+
+    results = []
+    for attribute in project:
+        svalue = 0
+        rvalue = attribute['value']
+        if attribute.get('name', False) == ATTRIBUTE_SLUG:
+            svalue = determine_score(rvalue)
+            results.append((ATTRIBUTE_SLUG,
+                            svalue,
+                            attribute.get('project_score_attribute_id'),
+                            rvalue))
+    return results
