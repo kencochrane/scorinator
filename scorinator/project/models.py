@@ -58,7 +58,7 @@ class Project(models.Model):
     def dict_val(self):
         """ return object as a dict """
         data = {'name': self.name,
-                'repo_id': self.pk,
+                'project_id': self.pk,
                 'repo_url': self.repo_url,
                 'slug': self.slug}
         from score.models import ProjectScore

@@ -8,7 +8,7 @@ import shutil
 import logging
 import json
 import errno
-from queue import queue_analytics_daemon
+from queue import queue_analytics_daemon, enqueue_score
 from git import clone_tmp
 
 root_path = os.path.abspath(os.path.dirname(__file__))
@@ -137,6 +137,13 @@ def post_job(project, post_results):
         if CLEAN_UP:
             shutil.rmtree(proj_dir)
             logging.info("{0} removed".format(proj_dir))
+    logging.info(post_results)
+    results = {
+        'project': project,
+        'results': post_results,
+    }
+    logging.info(results)
+    enqueue_score(json.dumps(results))
 
 
 def handle_job(project):
@@ -158,11 +165,7 @@ def run():
         queue_analytics_daemon(handle_job)
     except Exception as e:
         (etype, value, tb) = sys.exc_info()
-        print(etype)
-        print(value)
-        print(tb)
         trace_exception = ''.join(format_exception(etype, value, tb))
-        print(trace_exception)
         logger.error('exception', "ERROR: {0}".format(trace_exception))
         logger.error(e)
 
