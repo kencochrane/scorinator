@@ -29,3 +29,8 @@ Setting up a local development environment
 
     $ python scorinator/manage.py runserver --settings=scorinator.settings.local
 
+
+Setting up a live environment
+-----------------------------
+
+TODO ansible, herku, digital ocean, etc...
