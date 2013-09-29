@@ -22,7 +22,7 @@ The python file needs to have a run function that takes a project object. It nee
 
    {
       'name': 'has_readme',   # the slug name for the scoreattribute in the database.
-      'value': True         # 
+      'value': True           #
    }
 
 When you put a new python attribute file, you will need to restart the workers and they will automatically pick them up and run them for the next run.
