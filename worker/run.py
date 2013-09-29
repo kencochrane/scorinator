@@ -13,14 +13,15 @@ from git import clone_tmp
 
 root_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(root_path, 'lib'))
-logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s',
-        level=logging.INFO)
+logging.basicConfig(
+    format='%(asctime)s %(levelname)s: %(message)s', level=logging.INFO)
 logger = logging.getLogger('worker')
 
 # where we will clone repos under
 REPO_DIR = "/tmp/repos"
 # if we want to keep repos around after, useful for debugging.
 CLEAN_UP = True
+
 
 def mkdir_p(path):
     """ mkdir -p clone in python """
@@ -32,14 +33,15 @@ def mkdir_p(path):
         else:
             raise
 
+
 def load_modules(path, prefix):
     for fname in os.listdir(os.path.join(root_path, path)):
         if not fname.startswith(prefix) or not fname.endswith('.py'):
             continue
         name = fname[:-3]
         try:
-            mod = __import__('{0}.{1}'.format(path, name), globals(),
-                    locals(), [name], -1)
+            mod = __import__(
+                '{0}.{1}'.format(path, name), globals(), locals(), [name], -1)
             yield mod
         except Exception as e:
             logger.warning('Ignoring "{0}": {1}'.format(name, e))
@@ -58,8 +60,9 @@ def run_module(mod, *args):
             result = mod.run(*args)
             break
         except Exception:
-            logger.exception('{0}: returned an error.'
-                    ' Retrying in 1 second...'.format(mod.__name__))
+            logger.exception(
+                '{0}: returned an error.'
+                ' Retrying in 1 second...'.format(mod.__name__))
             retry -= 1
             time.sleep(1)
             continue
