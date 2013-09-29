@@ -5,6 +5,7 @@ from redis import Redis, StrictRedis
 
 logger = logging.getLogger('worker')
 
+
 def get_redis():
     if 'REDIS_HOST' in os.environ:
         logger.info("REDIS prod server")
