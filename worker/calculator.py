@@ -38,7 +38,7 @@ def run_module(mod, *args):
     while retry > 0:
         try:
             mod.logger = logger
-            result = mod.run(*args)
+            result = mod.score(*args)
             break
         except Exception:
             logger.exception('{0}: returned an error.'
