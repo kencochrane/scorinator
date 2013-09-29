@@ -13,8 +13,8 @@ from queue import queue_score_daemon
 
 root_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(root_path, 'lib'))
-logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s',
-        level=logging.INFO)
+logging.basicConfig(
+    format='%(asctime)s %(levelname)s: %(message)s', level=logging.INFO)
 logger = logging.getLogger('calculator')
 
 
@@ -24,8 +24,8 @@ def load_modules(path, prefix):
             continue
         name = fname[:-3]
         try:
-            mod = __import__('{0}.{1}'.format(path, name), globals(),
-                    locals(), [name], -1)
+            mod = __import__(
+                '{0}.{1}'.format(path, name), globals(), locals(), [name], -1)
             yield mod
         except Exception as e:
             logger.warning('Ignoring "{0}": {1}'.format(name, e))
@@ -44,8 +44,9 @@ def run_module(mod, *args):
             result = mod.score(*args)
             break
         except Exception:
-            logger.exception('{0}: returned an error.'
-                    ' Retrying in 1 second...'.format(mod.__name__))
+            logger.exception(
+                '{0}: returned an error.'
+                ' Retrying in 1 second...'.format(mod.__name__))
             retry -= 1
             time.sleep(1)
             continue
@@ -89,6 +90,7 @@ def post_job(project, post_results):
     r = requests.post("{0}project-score/".format(API_URL),
                       data=payload, auth=AUTH)
     print(r.text)
+
 
 def handle_job(project):
     logger.info('Starting... {0}'.format(project))
