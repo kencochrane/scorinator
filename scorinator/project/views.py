@@ -34,6 +34,7 @@ class ProjectListView(ListView):
     template_name = "project/project_list.html"
     model = Project
     context_object_name = "projects"
+    paginate_by = 10
 
     def get_queryset(self):
         qs = super(ProjectListView, self).get_queryset()
