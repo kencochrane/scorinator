@@ -21,9 +21,7 @@ def run(project):
             found = True
             break
 
-    return {
-            'name': ATTRIBUTE_SLUG, 'value': found
-            }
+    return {'name': ATTRIBUTE_SLUG, 'value': found}
 
 
 def score(project):
