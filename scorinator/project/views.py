@@ -68,7 +68,7 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         from score.models import ProjectScoreAttribute
-        project_score = ProjectScore.objects.latest_for_project(self.pk)
+        project_score = ProjectScore.objects.latest_for_project(self.object.pk)
         if project_score:
             kwargs.update(
                 score_breakdown=ProjectScoreAttribute.objects.for_score(
