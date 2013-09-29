@@ -7,11 +7,24 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4 col-md-offset-1">
+    <div class="col-md-5 col-md-offset-1">
       <form method="post" action="" role="form">
         {% csrf_token %}
-        {% bootstrap_form form %}
-        <div class="form-actions">
+        {% bootstrap_field form.name %}
+        <div class="form-group {% if 'url' in form.errors.keys %}has-error{% endif %}">
+          <label>Github Repo</label>
+          <div class="input-group">
+            <span class="input-group-addon">https://github.com/</span>
+            <input class="form-control" id="id_url" max_length="150" name="url" placeholder="[username]/[project_name]" type="text" />
+          </div>
+          {% if 'url' in form.errors.keys %}
+              {% for error in form.errors.url %}
+                  <span class="help-block">{{ error }}</span>
+              {% endfor %}
+          {% endif %}
+        </div>
+        {% bootstrap_field form.description %}
+        {% bootstrap_form_buttons %}
           <button type="submit" class="btn btn-success">
             <i class="glyphicon glyphicon-plus"></i>
             Add Project
@@ -20,7 +33,7 @@
             <i class="glyphicon glyphicon-remove"></i>
             Cancel
           </a>
-        </div>
+        {% end_bootstrap_form_buttons %}
       </form>
     </div>
   </div>
