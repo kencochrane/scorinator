@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
-from project.views import (ProjectListView, ProjectAddView, ProjectDetailView,
-    ProjectBuildView)
+from project.views import (
+    ProjectListView, ProjectAddView, ProjectDetailView, ProjectBuildView)
 
 
 urlpatterns = patterns(

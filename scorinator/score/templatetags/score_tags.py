@@ -13,7 +13,7 @@ def display_score(value):
         title = "Poor"
         if fvalue >= 80.0:
             tag = "success"
-            title ="Excellent"
+            title = "Excellent"
         elif fvalue >= 70.0:
             tag = "info"
             title = "Very Good"
@@ -28,8 +28,9 @@ def display_score(value):
         value = "?"
         title = "Calculating Score'"
 
-    return mark_safe("<span class='label label-{tag} score' data-toggle='tooltip' title='{title}'>{score}</span>".format(
-        score=value,
-        tag=tag,
-        title=title.capitalize())
-    )
+    return mark_safe(
+        "<span class='label label-{tag} score' data-toggle='tooltip' "
+        "title='{title}'>{score}</span>".format(
+            score=value,
+            tag=tag,
+            title=title.capitalize()))
