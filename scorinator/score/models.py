@@ -29,12 +29,22 @@ class ProjectScore(models.Model):
     class Meta:
         ordering = ('total_score', )
 
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return "{0} {1}".format(self.project, self.total_score)
 
 class ScoreAttribute(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     slug = models.SlugField(max_length=50)
 
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return self.slug
 
 class ProjectScoreAttributeManager(models.Manager):
     def for_score(self, project_score_id):
@@ -48,3 +58,11 @@ class ProjectScoreAttribute(models.Model):
     result = models.TextField()
 
     objects = ProjectScoreAttributeManager()
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return "{0} {1} {2}".format(self.score_attribute,
+                                    self.project_score,
+                                    self.score_value)
