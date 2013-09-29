@@ -23,8 +23,7 @@ Requirements
 Documentation
 -------------
 
-You can build the documentation locally or view the documentation
-here: http://scorinator.readthedocs.org/en/latest/
+You can build the documentation locally or `view the documentation`_ on ReadTheDocs.
 
 ::
 
@@ -37,4 +36,6 @@ Project Setup
 
 The instructions for setting up a `local development project`_.
 
+
+.. _view the documentation: http://scorinator.readthedocs.org/en/latest/
 .. _local development project: http://scorinator.readthedocs.org/en/latest/setup.html#setting-up-a-local-development-environment
