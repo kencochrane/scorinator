@@ -27,6 +27,10 @@
 - name: copy over scorinator upstart script
   action: template src=scorinator_upstart.conf dest=/etc/init/scorinator.conf owner=root group=root mode=0644
   notify: service scorinator start/enable
+  
+- name: copy over calculator upstart script
+  action: template src=calculator_upstart.conf dest=/etc/init/calculator.conf owner=root group=root mode=0644
+  notify: service calculator start/enable
 
 - name: get the app
   action: git repo={{project_git_repo}} dest={{project_git_checkout}}-{{project_version}} force=yes

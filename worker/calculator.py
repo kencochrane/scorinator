@@ -54,10 +54,9 @@ def run_module(mod, *args):
 
 def process_result(mod, project, result):
     """ given a result dictionary process it """
-    result['timestamp'] = int(time.time())
     logger.info('{0}: finished'.format(mod.__name__))
     for hook in load_modules('score_hooks', 'hook'):
-        run_module(hook, project, result.copy())
+        run_module(hook, project, result)
 
 
 def run_scorer(project):
@@ -78,17 +77,17 @@ def post_job(project, post_results):
     for attribute, score in post_results:
         total += score
     logger.info('total score: {0}'.format(total))
-    project_id = project['project'].get('project_id', None)
+    project_id = project.get('project', {}).get('project_id', None)
     if not project_id:
-        print("No project_id :(")
+        logger.info("No project_id :(")
         return
     payload = {
-        "project_id": project_id,
+        "project": project_id,
         "total_score": total,
     }
-    r = requests.post("{0}project-score/".format(API_URL),
+    r = requests.post("{0}project-scores/".format(API_URL),
                       data=payload, auth=AUTH)
-    print(r.text)
+    logger.debug(r.text)
 
 def handle_job(project):
     logger.info('Starting... {0}'.format(project))
