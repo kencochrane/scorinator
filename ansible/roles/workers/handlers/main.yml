@@ -1,5 +1,5 @@
 ---
 - name: service scorinator start/enable
   action: service name=scorinator state=restarted enabled=yes
-- name: service caclulator start/enable
-  action: service name=caclulator state=restarted enabled=yes
+- name: service calculator start/enable
+  action: service name=calculator state=restarted enabled=yes
