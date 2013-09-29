@@ -26,7 +26,6 @@ class HomeTestCase(unittest.TestCase):
                                     RequestFactory().get('/'))
         self.template_names = self.view.get_template_names()
         self.context_data = self.view.get_context_data()
-        self.client = Client()
 
     def test_get_template_names(self):
         self.assertEqual(self.template_names, ['index.html'])
