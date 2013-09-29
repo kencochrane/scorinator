@@ -46,7 +46,11 @@ class Project(models.Model):
     @property
     def score(self):
         from score.models import ProjectScore
-        return ProjectScore.objects.latest_for_project(self.pk).total_score
+        pscore = ProjectScore.objects.latest_for_project(self.pk)
+        if pscore is not None:
+            return pscore.total_score
+        else:
+            return pscore
 
     def __repr__(self):
         return self.__str__()

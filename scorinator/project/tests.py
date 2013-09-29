@@ -4,6 +4,7 @@ from django.test.client import Client
 from django_dynamic_fixture import G
 
 from project.models import Project, set_slug
+from score.models import ProjectScore
 
 
 class TestSetSlug(TestCase):
@@ -47,3 +48,20 @@ class TestProjectListView(TestCase):
         )
         assert "Super Project" in response.content
         assert "Sucky Project" not in response.content
+
+
+class TestProjectDetailView(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.project = G(Project, name="super project", slug="super")
+
+    def test_no_score(self):
+        response = self.client.get(reverse("project.detail",
+                                           args=[self.project.slug]))
+        assert response.status_code == 200
+
+    def test_with_score(self):
+        G(ProjectScore, project=self.project, total_score=65)
+        response = self.client.get(reverse("project.detail",
+                                           args=[self.project.slug]))
+        assert response.status_code == 200
