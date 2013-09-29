@@ -1,5 +1,5 @@
 # Django settings for scorinator project.
-
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -232,16 +232,16 @@ LOGGING = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host
-EMAIL_HOST = environ.get('MAILGUN_SMTP_SERVER', None)
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', None)
 
 # See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host-password
-EMAIL_HOST_PASSWORD = environ.get('MAILGUN_SMTP_PASSWORD', None)
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', None)
 
 # See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host-user
-EMAIL_HOST_USER = environ.get('MAILGUN_SMTP_LOGIN', None)
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', None)
 
 # See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-port
-EMAIL_PORT = environ.get('MAILGUN_SMTP_PORT', None )
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', None )
 
 # See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = '[Scorinator] '
