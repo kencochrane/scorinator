@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.text import slugify
-from core.queue import enqueue
+from core.queue import enqueue_analytics, enqueue_score
 import json
 
 def set_slug(name):
@@ -66,7 +66,11 @@ class Project(models.Model):
 
     def rebuild_score(self):
         """ Queue up a build request for this project """
-        return enqueue(self.json_val)
+        return enqueue_analytics(self.json_val)
+
+    def recalculate_score(self):
+        """ Queue up a recalculate request for this project """
+        return enqueue_score(self.json_val)
 
     def __repr__(self):
         return self.__str__()

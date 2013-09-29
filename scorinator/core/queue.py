@@ -9,8 +9,13 @@ if 'REDIS_HOST' in os.environ:
 else:
     redis = Redis()
 
-QUEUE_KEY = "scorinator_list"
+QUEUE_ANALYTICS_KEY = "scorinator_list"
+QUEUE_SCORE_KEY = "scorinator_score"
 
 
-def enqueue(value):
-    return redis.rpush(QUEUE_KEY, value)
+def enqueue_analytics(value):
+    return redis.rpush(QUEUE_ANALYTICS_KEY, value)
+
+
+def enqueue_score(value):
+    return redis.rpush(QUEUE_SCORE_KEY, value)

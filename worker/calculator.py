@@ -3,33 +3,17 @@
 import os
 import sys
 import time
-import shutil
 import logging
 import json
-import errno
-from queue import queue_analytics_daemon
-from git import clone_tmp
+from queue import queue_score_daemon
+
 
 root_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(root_path, 'lib'))
 logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s',
         level=logging.INFO)
-logger = logging.getLogger('worker')
+logger = logging.getLogger('calculator')
 
-# where we will clone repos under
-REPO_DIR = "/tmp/repos"
-# if we want to keep repos around after, useful for debugging.
-CLEAN_UP = True
-
-def mkdir_p(path):
-    """ mkdir -p clone in python """
-    try:
-        os.makedirs(path)
-    except OSError as exc:
-        if exc.errno == errno.EEXIST:
-            pass
-        else:
-            raise
 
 def load_modules(path, prefix):
     for fname in os.listdir(os.path.join(root_path, path)):
@@ -92,53 +76,20 @@ def run_analytics(project):
     return full_results
 
 
-def clean_repo_url(project):
-    current_repo_url = project.get('repo_url', None)
-    if current_repo_url and current_repo_url.startswith("https://github.com/"):
-        if not current_repo_url.endswith(".git"):
-            logger.info('adding .git to url {0}'.format(current_repo_url))
-            repo_url = "{0}.git".format(current_repo_url)
-        else:
-            logger.info('Leaving gh url alone {0}'.format(current_repo_url))
-            repo_url = current_repo_url
-    else:
-        logger.info('Leaving repo url alone {0}'.format(current_repo_url))
-        repo_url = current_repo_url
-    return repo_url
-
-
-def clone_project(project):
-    """ Clone the project locally """
-    # todo actually do the clone
-    repo_url = clean_repo_url(project)
-    project_directory = clone_tmp(repo_url, base_dir=REPO_DIR)
-    logging.info("Cloned repo dir = {0}".format(project_directory))
-    return project_directory
-
-
 def pre_job(project):
     """ run before it gets started. alter project input if needed"""
-    project_directory = clone_project(project)
-    project['project_directory'] = project_directory
     return project
 
 
 def post_job(project, post_results):
     """ runs after the project is finished processing"""
-    proj_dir = project.get('project_directory', None)
-    if not proj_dir:
-        return
-    if os.path.isdir(proj_dir) and os.path.exists(proj_dir):
-        logging.info("{0} exists".format(proj_dir))
-        if CLEAN_UP:
-            shutil.rmtree(proj_dir)
-            logging.info("{0} removed".format(proj_dir))
+    pass
 
 
 def handle_job(project):
     logger.info('Starting... {0}'.format(project))
     project = json.loads(project)
-    logger.debug("project json = {0}".format(project))
+    logger.debug("score attribute json = {0}".format(project))
     project = pre_job(project)
     results = run_analytics(project)
     post_job(project, results)
@@ -148,12 +99,11 @@ def handle_job(project):
 def run():
     #TODO: add multi workers to speed things up.
     try:
-        mkdir_p(REPO_DIR)
-        queue_analytics_daemon(handle_job)
+        queue_score_daemon(handle_job)
     except Exception as e:
         logger.error(e)
 
 
 if __name__ == '__main__':
-    logger.info('Starting worker')
+    logger.info('Starting calculator')
     run()
