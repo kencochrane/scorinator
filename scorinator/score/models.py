@@ -4,7 +4,7 @@ from project.models import Project
 
 class ProjectScoreManager(models.Manager):
     def top(self, limit=10):
-        return self.get_query_set(total_score__isnull=False)[0:limit]
+        return self.get_query_set().filter(total_score__isnull=False)[0:limit]
 
     def latest_for_project(self, project_id):
         try:
