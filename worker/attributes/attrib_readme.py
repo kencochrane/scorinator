@@ -28,8 +28,10 @@ def score(project):
     """Score the attribute for project"""
     svalue = 0
     for attribute in project:
+        rvalue = attribute['value']
         if attribute.get('name', False) == ATTRIBUTE_SLUG:
-            if bool(attribute['value']):
+            if bool(rvalue):
                 svalue = WEIGHT
                 break
-    return (ATTRIBUTE_SLUG, svalue)
+    return (ATTRIBUTE_SLUG, svalue,
+            attribute.get('project_score_attribute_id'), rvalue)
