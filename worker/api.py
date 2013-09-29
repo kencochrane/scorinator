@@ -20,7 +20,7 @@ def get_score_attribute(slug):
     #TODO: Add some caching
     if not slug:
         return None
-    r = requests.get("{0}score-attributes/has_readme/".format(API_URL),
+    r = requests.get("{0}score-attributes/{1}/".format(API_URL, slug),
                      auth=AUTH)
     if r and r.status_code == 200:
         return r.json()
