@@ -1,10 +1,10 @@
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
-from django.http import HttpResponseRedirect
+
 from project.forms import ProjectForm
 from project.models import Project
-from annoying.decorators import render_to
-from django.core.urlresolvers import reverse
 
 
 class ProjectBuildView(DetailView):
