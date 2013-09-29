@@ -5,7 +5,7 @@ admin.autodiscover()
 
 from rest_framework import routers
 
-from core.views import HomeView
+from core.views import HomeView, build_all
 from project.viewsets import ProjectViewSet
 from score.viewsets import (
     ProjectScoreViewSet, ScoreAttributeViewSet, ProjectScoreAttribute,
@@ -30,6 +30,7 @@ urlpatterns = patterns(
         ScoreAttributeDetail.as_view()),
     url(r'^api/v1/', include(router.urls)),
     url(r'^__admin__/', include(admin.site.urls)),
+    url(r'^__buildall__/', build_all, name="build_all"),
 
 )
 

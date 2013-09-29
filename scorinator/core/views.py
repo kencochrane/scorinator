@@ -1,5 +1,20 @@
 from django.views.generic import TemplateView
 from score.models import ProjectScore
+from annoying.decorators import render_to
+from django.contrib.auth.decorators import login_required
+from project.models import Project
+
+
+@login_required
+@render_to('build_all.html')
+def build_all(request):
+    """
+    This rebuilds all projects
+    """
+    projects = Project.objects.all()
+    for project in projects:
+        project.rebuild_score()
+    return {}
 
 
 class HomeView(TemplateView):

@@ -227,28 +227,4 @@ LOGGING = {
     }
 }
 
-########## EMAIL CONFIGURATION
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host
-EMAIL_HOST = environ.get('MAILGUN_SMTP_SERVER', None)
-
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host-password
-EMAIL_HOST_PASSWORD = environ.get('MAILGUN_SMTP_PASSWORD', None)
-
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host-user
-EMAIL_HOST_USER = environ.get('MAILGUN_SMTP_LOGIN', None)
-
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-port
-EMAIL_PORT = environ.get('MAILGUN_SMTP_PORT', None )
-
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = '[Scorinator] '
-
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-use-tls
-EMAIL_USE_TLS = True
-
-# See: https://docs.djangoproject.com/en/1.3/ref/settings/#server-email
-SERVER_EMAIL = EMAIL_HOST_USER
-########## END EMAIL CONFIGURATION

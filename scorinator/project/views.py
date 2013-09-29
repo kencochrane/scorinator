@@ -29,7 +29,6 @@ class ProjectBuildView(DetailView):
             )
         return super(ProjectBuildView, self).get_context_data(**kwargs)
 
-
 class ProjectListView(ListView):
     template_name = "project/project_list.html"
     model = Project

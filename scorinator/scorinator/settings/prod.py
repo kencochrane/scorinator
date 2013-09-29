@@ -1,3 +1,4 @@
+import os
 from .base import *  # NOQA
 import dj_database_url
 
@@ -72,3 +73,29 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
+
+########## EMAIL CONFIGURATION
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', None)
+
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host-password
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', None)
+
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-host-user
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', None)
+
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-port
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', None )
+
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-subject-prefix
+EMAIL_SUBJECT_PREFIX = '[Scorinator] '
+
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-use-tls
+EMAIL_USE_TLS = True
+
+# See: https://docs.djangoproject.com/en/1.3/ref/settings/#server-email
+SERVER_EMAIL = EMAIL_HOST_USER
+########## END EMAIL CONFIGURATION
