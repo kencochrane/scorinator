@@ -30,7 +30,7 @@ def load_modules(path, prefix):
 
 def run_module(mod, *args):
     logger.info('{0}: started'.format(mod.__name__))
-    if not hasattr(mod, 'run'):
+    if not hasattr(mod, 'score'):
         logger.warning('{0} has no entry point.'.format(mod.__name__))
         return
     retry = 3
@@ -53,11 +53,11 @@ def process_result(mod, project, result):
     """ given a result dictionary process it """
     result['timestamp'] = int(time.time())
     logger.info('{0}: finished'.format(mod.__name__))
-    for hook in load_modules('hooks', 'hook'):
+    for hook in load_modules('score_hooks', 'hook'):
         run_module(hook, project, result.copy())
 
 
-def run_analytics(project):
+def run_scorer(project):
     full_results = []
     for mod in load_modules('attributes', 'attrib'):
         result = run_module(mod, project)
@@ -76,24 +76,12 @@ def run_analytics(project):
     return full_results
 
 
-def pre_job(project):
-    """ run before it gets started. alter project input if needed"""
-    return project
-
-
-def post_job(project, post_results):
-    """ runs after the project is finished processing"""
-    pass
-
-
 def handle_job(project):
     logger.info('Starting... {0}'.format(project))
     project = json.loads(project)
-    logger.debug("score attribute json = {0}".format(project))
-    project = pre_job(project)
-    results = run_analytics(project)
-    post_job(project, results)
-    logger.info('Finsihed... {0}'.format(project))
+    logger.debug("project json = {0}".format(project))
+    result = run_scorer(project)
+    logger.info('Finished... {0}'.format(result))
 
 
 def run():
