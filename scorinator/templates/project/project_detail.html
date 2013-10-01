@@ -35,23 +35,25 @@
         <thead>
           <tr>
             <td>Attribute</td>
+            <td>Result</td>
             <td>Score</td>
           </tr>
         </thead>
         <tbody>
           {% for score in score_breakdown %}
-          <tr>
-            <td>
-              <strong>{{ score.score_attribute.name }}</strong>
-            </td>
-            <td>{{ score.score_value|display_score }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-              <td colspan="2">
-                  Sorry, no score attributes.
+            <tr>
+              <td>
+                <strong>{{ score.score_attribute.name }}</strong>
               </td>
-          </tr>
+              <td>{{ score.result }}</td>
+              <td>{{ score.score_value|display_score }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="2">
+                Sorry, no score attributes.
+              </td>
+            </tr>
           {% endfor %}
         </tbody>
       </table>
