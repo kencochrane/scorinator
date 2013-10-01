@@ -32,7 +32,7 @@ class HomeTestCase(unittest.TestCase):
 
     def test_context_data(self):
         self.assertIsNotNone(self.context_data['featured_project'])
-        self.assertIsNotNone(self.context_data['top_scores'])
+        self.assertIsNotNone(self.context_data['recent_scores'])
 
 
 class TestHomeView(unittest.TestCase):
