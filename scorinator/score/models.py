@@ -5,6 +5,10 @@ from project.models import Project
 class ProjectScoreManager(models.Manager):
     def top(self, limit=10):
         return self.get_query_set().filter(total_score__isnull=False).order_by(
+            "-total_score")[0:limit]
+
+    def recent(self, limit=10):
+        return self.get_query_set().filter(total_score__isnull=False).order_by(
             "-pk")[0:limit]
 
     def latest_for_project(self, project_id):
