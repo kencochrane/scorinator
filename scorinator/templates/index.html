@@ -44,7 +44,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for score in top_scores %}
+          {% for score in recent_scores %}
           <tr>
             <td>{{ score.total_score|display_score }}</td>
             <td>
@@ -53,7 +53,7 @@
               </a>
             </td>
             <td>
-              <a href="{{ project.repo_url }}">{{ score.project.repo_url }}</a>
+              <a href="{{ score.project.repo_url }}">{{ score.project.repo_url }}</a>
             </td>
           </tr>
           {% endfor %}
