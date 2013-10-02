@@ -1,9 +1,7 @@
-from django.test import TestCase
-
 from score.templatetags.score_tags import display_score
 
 
-class TestDisplayScore(TestCase):
+class TestDisplayScore():
     def test_string(self):
         assert "?" in display_score("")
 

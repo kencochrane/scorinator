@@ -1,0 +1,17 @@
+# local dev
+django-debug-toolbar==0.9.4
+bpython==0.12
+
+# documentation
+Sphinx==1.2b2
+
+# testing
+pytest==2.4.1
+pytest-django==2.3.1
+pytest-cov==1.6
+WebTest==2.0.9
+django-webtest==1.7.5
+coverage==3.6
+pep8==1.4.5
+flake8==2.0
+django-dynamic-fixture==1.6.5

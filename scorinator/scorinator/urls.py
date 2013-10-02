@@ -27,7 +27,7 @@ urlpatterns = patterns(
     #TODO: this is a little hack to get the query by slug,
     #      replace with better way later
     url(r'^api/v1/score-attributes/(?P<slug>[\w-]+)/$',
-        ScoreAttributeDetail.as_view()),
+        ScoreAttributeDetail.as_view(), name="score.attributes"),
     url(r'^api/v1/', include(router.urls)),
     url(r'^__admin__/', include(admin.site.urls)),
     url(r'^__buildall__/', build_all, name="build_all"),
