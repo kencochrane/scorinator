@@ -11,6 +11,9 @@ class ProjectScoreManager(models.Manager):
         return self.get_query_set().filter(total_score__isnull=False).order_by(
             "-pk")[0:limit]
 
+    def graded(self):
+        return self.get_query_set().values_list("project").filter(total_score__isnull=False).count()
+
     def latest_for_project(self, project_id):
         try:
             latest = self.get_query_set().filter(
