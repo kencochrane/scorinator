@@ -6,6 +6,7 @@ bpython==0.12
 Sphinx==1.2b2
 
 # testing
+mock==1.0.1
 pytest==2.4.1
 pytest-django==2.3.1
 pytest-cov==1.6
