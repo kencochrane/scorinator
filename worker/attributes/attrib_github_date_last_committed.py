@@ -21,7 +21,9 @@ def run(project):
             last_commit_string = last_commit['commit']['committer']['date']
 
             struct = time.strptime(last_commit_string, '%Y-%m-%dT%H:%M:%SZ')
-            last_commit_date = datetime.datetime.fromtimestamp(time.mktime(struct))
+            last_commit_date = datetime.datetime.fromtimestamp(
+                time.mktime(struct)
+            )
 
             today = datetime.datetime.utcnow()
             delta = today - last_commit_date

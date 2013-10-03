@@ -9,6 +9,7 @@ from project.models import Project, set_slug
 def project():
     return G(Project, name="test")
 
+
 @pytest.mark.django_db
 class TestSetSlug():
     def test_normal(self, project):

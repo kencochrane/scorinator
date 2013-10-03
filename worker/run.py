@@ -77,6 +77,7 @@ def process_result(mod, project, result):
         result = run_module(hook, project, result)
     return result
 
+
 def run_analytics(project):
     full_results = []
     for mod in load_modules('attributes', 'attrib'):

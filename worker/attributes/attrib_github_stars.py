@@ -20,6 +20,7 @@ def run(project):
 
     return {'name': ATTRIBUTE_SLUG, 'value': repo_stars}
 
+
 def score(project):
     results = []
     for attribute in project:

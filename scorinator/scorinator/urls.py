@@ -7,9 +7,8 @@ from rest_framework import routers
 
 from core.views import HomeView, build_all
 from project.viewsets import ProjectViewSet
-from score.viewsets import (
-    ProjectScoreViewSet, ScoreAttributeViewSet, ProjectScoreAttribute,
-    ScoreAttributeDetail, ProjectScoreAttributeViewset)
+from score.viewsets import (ProjectScoreViewSet, ScoreAttributeViewSet,
+                            ScoreAttributeDetail, ProjectScoreAttributeViewset)
 
 
 router = routers.DefaultRouter()

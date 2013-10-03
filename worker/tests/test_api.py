@@ -21,7 +21,7 @@ class TestAPIParams():
 
 class TestGetScoreAttribute():
     def test_no_slug(self):
-        assert get_score_attribute("") == None
+        assert get_score_attribute("") is None
 
     def test_slug_valid(self):
         mock_response = Mock(status_code=200, **{'json.return_value': 'good'})

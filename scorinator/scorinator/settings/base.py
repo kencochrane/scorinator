@@ -1,6 +1,4 @@
 # Django settings for scorinator project.
-import os
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -226,4 +224,3 @@ LOGGING = {
         }
     }
 }
-

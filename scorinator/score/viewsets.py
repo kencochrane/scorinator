@@ -33,7 +33,8 @@ class ProjectScoreAttributeViewset(viewsets.ModelViewSet):
         project_score = models.ForeignKey(ProjectScore)
         """
         queryset = ProjectScoreAttribute.objects.all()
-        score_attribute = self.request.QUERY_PARAMS.get('score_attribute', None)
+        score_attribute = self.request.QUERY_PARAMS.get('score_attribute',
+                                                        None)
         project_score = self.request.QUERY_PARAMS.get('project_score', None)
         if score_attribute is not None:
             queryset = queryset.filter(score_attribute__pk=score_attribute)

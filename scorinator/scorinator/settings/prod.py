@@ -88,7 +88,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', None)
 EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', None)
 
 # See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-port
-EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', None )
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', None)
 
 # See: https://docs.djangoproject.com/en/1.3/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = '[Scorinator] '

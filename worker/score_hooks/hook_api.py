@@ -3,8 +3,8 @@ import logging
 
 from api import AUTH, API_URL, get_score_attribute
 
-
 logger = logging.getLogger('worker')
+
 
 def send_score(project_score_attribute_id, score_attribute_id,
                project_score_id, value, result):

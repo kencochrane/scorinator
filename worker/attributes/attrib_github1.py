@@ -24,10 +24,11 @@ def run(project):
         return None
 
     return [
-                {'name': ATTRIBUTE_SLUG_REPO_WATCHERS, 'value': watchers_count},
-                {'name': ATTRIBUTE_SLUG_REPO_FORKS, 'value': repo_forks},
-                {'name': ATTRIBUTE_SLUG_REPO_OPEN_ISSUES, 'value': open_issues_count},
-            ]
+        {'name': ATTRIBUTE_SLUG_REPO_WATCHERS, 'value': watchers_count},
+        {'name': ATTRIBUTE_SLUG_REPO_FORKS, 'value': repo_forks},
+        {'name': ATTRIBUTE_SLUG_REPO_OPEN_ISSUES, 'value': open_issues_count},
+    ]
+
 
 def score(project):
     results = []

@@ -66,7 +66,8 @@ def run_scorer(project):
     for mod in load_modules('attributes', 'attrib'):
         results = run_module(mod, project.get('results', []))
         if not results:
-            logger.error('{0}: did not return any results'.format(mod.__name__))
+            logger.error('{0}: did not return any results'.format(
+                mod.__name__))
             continue
         for result in results:
             full_results.append(result)
@@ -90,9 +91,10 @@ def post_job(project, post_results):
         "project": project_id,
         "total_score": total,
     }
-    r = requests.put("{0}project-scores/{1}/".format(API_URL,
-                                                     project_score_id),
-                      data=payload, auth=AUTH)
+    r = requests.put("{0}project-scores/{1}/".format(
+        API_URL,
+        project_score_id
+    ), data=payload, auth=AUTH)
     logger.debug(r.text)
 
 
