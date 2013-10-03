@@ -5,6 +5,7 @@ source =
 omit =
      */tests/*
      */migrations/*
+     */settings/*
 
 [report]
 # Regexes for lines to exclude from consideration
