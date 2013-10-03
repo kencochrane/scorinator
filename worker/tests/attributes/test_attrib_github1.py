@@ -1,4 +1,5 @@
-from attributes.attrib_github1 import (run, ATTRIBUTE_SLUG_REPO_FORKS,
+from attributes.attrib_github1 import (run, score, WEIGHT,
+                                       ATTRIBUTE_SLUG_REPO_FORKS,
                                        ATTRIBUTE_SLUG_REPO_WATCHERS,
                                        ATTRIBUTE_SLUG_REPO_OPEN_ISSUES)
 from mock import Mock, patch
@@ -30,10 +31,39 @@ class TestAttribGitHub1Run():
         with patch("attributes.attrib_github1.requests", mock_request):
             r = run({"repo_url": "https://github.com/example"})
             assert r == [
-                {'name': ATTRIBUTE_SLUG_REPO_WATCHERS,
-                 'value': 5},
-                {'name': ATTRIBUTE_SLUG_REPO_FORKS,
-                 'value': 3},
-                {'name': ATTRIBUTE_SLUG_REPO_OPEN_ISSUES,
-                 'value': 20},
+                {'name': ATTRIBUTE_SLUG_REPO_WATCHERS, 'value': 5},
+                {'name': ATTRIBUTE_SLUG_REPO_FORKS, 'value': 3},
+                {'name': ATTRIBUTE_SLUG_REPO_OPEN_ISSUES, 'value': 20},
             ]
+
+
+class TestAttribGitHub1Score():
+    def test_score_none(self):
+        assert score({}) == []
+
+    def test_score_single_true(self):
+        project = [{'name': ATTRIBUTE_SLUG_REPO_WATCHERS, 'value': 5,
+                   'project_score_attribute_id': 23}]
+        assert score(project) == [(ATTRIBUTE_SLUG_REPO_WATCHERS,
+                                   WEIGHT, 23, 5)]
+
+    def test_score_single_false(self):
+        project = [{'name': ATTRIBUTE_SLUG_REPO_WATCHERS, 'value': 0,
+                   'project_score_attribute_id': 23}]
+        assert score(project) == [(ATTRIBUTE_SLUG_REPO_WATCHERS,
+                                   0, 23, 0)]
+
+    def test_score_list(self):
+        project = [
+            {'name': ATTRIBUTE_SLUG_REPO_WATCHERS, 'value': 5,
+             'project_score_attribute_id': 23},
+            {'name': ATTRIBUTE_SLUG_REPO_FORKS, 'value': 3,
+             'project_score_attribute_id': 24},
+            {'name': ATTRIBUTE_SLUG_REPO_OPEN_ISSUES, 'value': 20,
+             'project_score_attribute_id': 25}
+        ]
+        assert score(project) == [
+            (ATTRIBUTE_SLUG_REPO_WATCHERS, WEIGHT, 23, 5),
+            (ATTRIBUTE_SLUG_REPO_FORKS, WEIGHT, 24, 3),
+            (ATTRIBUTE_SLUG_REPO_OPEN_ISSUES, WEIGHT, 25, 20)
+        ]
