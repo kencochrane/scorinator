@@ -2,6 +2,7 @@ from attributes.attrib_github_stars import (run, score, WEIGHT,
                                             ATTRIBUTE_SLUG)
 from mock import Mock, patch
 
+
 class TestAttribGitHubStarsRun(object):
     def test_run_none(self):
         r = run({})

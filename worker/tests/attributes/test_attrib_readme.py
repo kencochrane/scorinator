@@ -2,6 +2,7 @@ from attributes.attrib_readme import (run, score, WEIGHT,
                                       ATTRIBUTE_SLUG)
 from mock import Mock, patch
 
+
 class TestAttribReadmeRun(object):
     def test_no_dir(self):
         r = run({})

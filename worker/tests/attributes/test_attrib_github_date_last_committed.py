@@ -4,6 +4,7 @@ from attributes.attrib_github_date_last_committed import (run, score, WEIGHT,
                                                           ATTRIBUTE_SLUG)
 from mock import Mock, patch
 
+
 class TestAttribGitHubDateLastCommittedRun(object):
     def test_run_none(self):
         r = run({})

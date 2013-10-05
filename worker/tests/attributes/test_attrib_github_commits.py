@@ -1,6 +1,7 @@
 from attributes.attrib_github_commits import (run, score, WEIGHT,
-                                             ATTRIBUTE_SLUG)
+                                              ATTRIBUTE_SLUG)
 from mock import Mock, patch
+
 
 class TestAttribGitHubCommitsRun(object):
     def test_run_none(self):

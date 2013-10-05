@@ -2,6 +2,7 @@ from attributes.attrib_travisci import (run, score, WEIGHT,
                                         ATTRIBUTE_SLUG)
 from mock import Mock, patch
 
+
 class TestAttribTravisciRun(object):
     def test_no_dir(self):
         r = run({})

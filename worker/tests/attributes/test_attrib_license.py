@@ -2,6 +2,7 @@ from attributes.attrib_license import (run, score, WEIGHT,
                                        ATTRIBUTE_SLUG)
 from mock import Mock, patch
 
+
 class TestAttribLicenseRun(object):
     def test_no_dir(self):
         r = run({})
