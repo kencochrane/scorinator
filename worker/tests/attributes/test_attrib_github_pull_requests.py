@@ -1,8 +1,8 @@
-from attributes.attrib_github_commits import (run, score, WEIGHT,
-                                             ATTRIBUTE_SLUG)
+from attributes.attrib_github_pull_requests import (run, score, WEIGHT,
+                                                    ATTRIBUTE_SLUG)
 from mock import Mock, patch
 
-class TestAttribGitHubCommitsRun(object):
+class TestAttribGitHubPullRequestsRun(object):
     def test_run_none(self):
         r = run({})
         assert r is None
@@ -11,7 +11,8 @@ class TestAttribGitHubCommitsRun(object):
         mock_response = Mock(status_code=404)
         mock_request = Mock(return_value=True,
                             **{"get.return_value": mock_response})
-        with patch("attributes.attrib_github_commits.requests", mock_request):
+        with patch("attributes.attrib_github_pull_requests.requests",
+                   mock_request):
             r = run({"repo_url": "https://github.com/example"})
             assert r is None
 
@@ -21,12 +22,13 @@ class TestAttribGitHubCommitsRun(object):
                              **{'json.return_value': api_response})
         mock_request = Mock(return_value=True,
                             **{"get.return_value": mock_response})
-        with patch("attributes.attrib_github_commits.requests", mock_request):
+        with patch("attributes.attrib_github_pull_requests.requests",
+                   mock_request):
             r = run({"repo_url": "https://github.com/example"})
             assert r == {'name': ATTRIBUTE_SLUG, 'value': 4}
 
 
-class TestAttribGitHubCommitsScore():
+class TestAttribGitHubPullRequestsScore():
     def test_score_none(self):
         assert score({}) == []
 
