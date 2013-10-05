@@ -17,7 +17,7 @@ def run(project):
     found = False
 
     for f in files:
-        if f.lower().startswith('.travis.yml'):
+        if f.lower() == '.travis.yml':
             found = True
             break
 
