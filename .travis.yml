@@ -5,6 +5,7 @@ python:
 install:
     - pip install -r requirements/install.txt --use-mirrors
     - pip install -r requirements/testing.txt --use-mirrors
+    - pip install -r worker/requirements.txt --use-mirrors
     - pip install coveralls --use-mirrors
 script:
     - py.test
