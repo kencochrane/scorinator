@@ -34,14 +34,18 @@ def mkdir_p(path):
             raise
 
 
+def import_file(path, name):
+    return __import__(
+        '{0}.{1}'.format(path, name), globals(), locals(), [name], -1)
+
+
 def load_modules(path, prefix):
     for fname in os.listdir(os.path.join(root_path, path)):
-        if not fname.startswith(prefix) or not fname.endswith('.py'):
+        if not (fname.startswith(prefix) and fname.endswith('.py')):
             continue
         name = fname[:-3]
         try:
-            mod = __import__(
-                '{0}.{1}'.format(path, name), globals(), locals(), [name], -1)
+            mod = import_file(path, name)
             yield mod
         except Exception as e:
             logger.warning('Ignoring "{0}": {1}'.format(name, e))
@@ -85,14 +89,10 @@ def run_analytics(project):
         if not result:
             logger.error('{0}: did not return any result'.format(mod.__name__))
             continue
-        if isinstance(result, list):
-            # if the module returned a list, process one at a time.
-            for res in result:
-                new_result = process_result(mod, project, res)
-                full_results.append(new_result)
-        else:
-            # it was a dict result process like normal.
-            new_result = process_result(mod, project, result)
+        if not isinstance(result, list):
+            result = [result]
+        for res in result:
+            new_result = process_result(mod, project, res)
             full_results.append(new_result)
     return full_results
 
