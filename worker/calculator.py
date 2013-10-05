@@ -25,7 +25,7 @@ def import_file(path, name):
 
 def load_modules(path, prefix):
     for fname in os.listdir(os.path.join(root_path, path)):
-        if not fname.startswith(prefix) or not fname.endswith('.py'):
+        if not (fname.startswith(prefix) and fname.endswith('.py')):
             continue
         name = fname[:-3]
         try:
