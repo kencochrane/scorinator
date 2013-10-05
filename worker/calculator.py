@@ -18,14 +18,18 @@ logging.basicConfig(
 logger = logging.getLogger('calculator')
 
 
+def import_file(path, name):
+    return __import__(
+        '{0}.{1}'.format(path, name), globals(), locals(), [name], -1)
+
+
 def load_modules(path, prefix):
     for fname in os.listdir(os.path.join(root_path, path)):
         if not fname.startswith(prefix) or not fname.endswith('.py'):
             continue
         name = fname[:-3]
         try:
-            mod = __import__(
-                '{0}.{1}'.format(path, name), globals(), locals(), [name], -1)
+            mod = import_file(path, name)
             yield mod
         except Exception as e:
             logger.warning('Ignoring "{0}": {1}'.format(name, e))
