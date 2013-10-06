@@ -6,7 +6,7 @@ register = template.Library()
 
 
 @register.filter()
-def display_score(value):
+def display_project_score(value):
     try:
         fvalue = float(value)
         tag = "danger"
@@ -27,7 +27,17 @@ def display_score(value):
         tag = "default"
         value = "?"
         title = "Calculating Score'"
+    return display_score(value, tag, title)
 
+
+@register.filter()
+def display_attribute_score(value):
+    tag = "default"
+    title=""
+    return display_score(value, tag, title)
+
+
+def display_score(value, tag, title):
     return mark_safe(
         "<span class='label label-{tag} score' data-toggle='tooltip' "
         "title='{title}'>{score}</span>".format(

@@ -19,7 +19,7 @@
         Top Rated Project
         <h2>
           {{ featured_project.name }}
-          {{ featured_project.score|display_score }}
+          {{ featured_project.score|display_project_score }}
           <small>
             <a href="{{ featured_project.repo_url }}">
               {{ featured_project.repo_url }}
@@ -46,7 +46,7 @@
         <tbody>
           {% for score in recent_scores %}
           <tr>
-            <td>{{ score.total_score|display_score }}</td>
+            <td>{{ score.total_score|display_project_score }}</td>
             <td>
               <a href="{% url 'project.detail' score.project.slug %}">
                 {{ score.project.name }}

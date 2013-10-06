@@ -5,7 +5,7 @@
   <div class="page-header">
     <h1>
       {{ project.name }}
-      {{ project.score|display_score }}
+      {{ project.score|display_project_score }}
       <small>
         <span class="pull-right">
           <a href="{% url 'project.list' %}" class="btn btn-default">

@@ -31,7 +31,7 @@
             <td>
               <a href="{{ project.repo_url }}">{{ project.repo_url }}</a>
             </td>
-            <td>{{ project.score|display_score }}</td>
+            <td>{{ project.score|display_project_score }}</td>
             {% if user.is_superuser %}
             <td>
               <div class="btn-group btn-group-xs">
