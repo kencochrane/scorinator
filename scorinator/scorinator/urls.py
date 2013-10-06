@@ -20,7 +20,7 @@ router.register(r'project-score-attributes', ProjectScoreAttributeViewset)
 urlpatterns = patterns(
     '',
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^hook/', include('hooks.urls')),
+    url(r'^hook/', include('web_hooks.urls')),
     url(r'^project/', include('project.urls')),
 
     #TODO: this is a little hack to get the query by slug,
