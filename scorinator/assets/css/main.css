@@ -20,6 +20,14 @@ body {
     border: 1px solid #ccc;
 }
 
+section#all-projects {
+    padding: 30px 0;
+}
+
+section#info {
+    padding-top: 30px;
+}
+
 footer {
     padding-bottom: 80px;
 }
