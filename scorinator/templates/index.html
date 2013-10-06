@@ -7,7 +7,7 @@
     <div class="container">
       <div class="col-md-6">
         <h1>Scorinator!</h1>
-        <p>Open source projects rated!</p>
+        <p>Open source projects scored!</p>
         <p>
         <a href="{% url 'project.add' %}" class="btn btn-success">
           <i class="glyphicon glyphicon-plus"></i>
@@ -16,9 +16,11 @@
       </p>
       </div>
       <div class="col-md-3 col-md-offset-2" id="featured">
-        Top Rated Project
+        Top Scored Project
         <h2>
-          {{ featured_project.name }}
+          <a href="{% url 'project.detail' featured_project.slug %}">
+            {{ featured_project.name }}
+          </a>
           {{ featured_project.score|display_project_score }}
           <small>
             <a href="{{ featured_project.repo_url }}">
