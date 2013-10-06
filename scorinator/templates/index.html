@@ -16,18 +16,20 @@
       </p>
       </div>
       <div class="col-md-3 col-md-offset-2" id="featured">
-        Top Scored Project
-        <h2>
-          <a href="{% url 'project.detail' featured_project.slug %}">
-            {{ featured_project.name }}
-          </a>
-          {{ featured_project.score|display_project_score }}
-          <small>
-            <a href="{{ featured_project.repo_url }}">
-              {{ featured_project.repo_url }}
+        {% if featured_project %}
+          Top Scored Project
+          <h2>
+            <a href="{% url 'project.detail' featured_project.slug %}">
+              {{ featured_project.name }}
             </a>
-          </small>
-        </h2>
+            {{ featured_project.score|display_project_score }}
+            <small>
+              <a href="{{ featured_project.repo_url }}">
+                {{ featured_project.repo_url }}
+              </a>
+            </small>
+          </h2>
+        {% endif %}
       </div>
     </div>
   </div>
