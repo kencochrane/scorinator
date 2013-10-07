@@ -1,8 +1,14 @@
 from django import template
 from django.utils.safestring import mark_safe
+from score.models import ProjectScore
 
 
 register = template.Library()
+
+
+@register.simple_tag()
+def projects_scored():
+    return ProjectScore.objects.graded()
 
 
 @register.filter()
