@@ -2,23 +2,6 @@ from mock import Mock, patch
 from api import get_score_attribute
 
 
-class TestAPIParams():
-    def test_default(self):
-        from api import API_URL, API_USER, API_PASSWORD
-        assert API_URL == "http://localhost:8000/api/v1/"
-        assert API_USER == "ken"
-        assert API_PASSWORD == "emily"
-
-    # def test_os_environ(self):
-    #     with patch("api.os.environ", {'API_URL': 'os_url',
-    #                                     'API_USER': 'os_user',
-    #                                     'API_PASSWORD': 'os_password'}):
-    #         from api import API_URL, API_USER, API_PASSWORD
-    #         assert API_URL == "os_url"
-    #         assert API_USER == "os_user"
-    #         assert API_PASSWORD == "os_password"
-
-
 class TestGetScoreAttribute():
     def test_no_slug(self):
         assert get_score_attribute("") is None

@@ -9,8 +9,8 @@ if 'API_URL' in os.environ:
     API_PASSWORD = os.environ['API_PASSWORD']
 else:
     API_URL = "http://localhost:8000/api/v1/"
-    API_USER = "ken"
-    API_PASSWORD = "emily"
+    API_USER = "admin"
+    API_PASSWORD = "secret"
 
 AUTH = HTTPBasicAuth(API_USER, API_PASSWORD)
 
