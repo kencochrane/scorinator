@@ -15,6 +15,8 @@ Markdown==2.3.1
 django-filter==0.7
 redis==2.7.5
 hiredis==0.1.1
+requests=2.0.0
+dulwich==0.9.3
 
 # deployment
 Fabric==1.7.0
