@@ -48,9 +48,9 @@ class Project(models.Model):
     @property
     def score(self):
         from score.models import ProjectScore
-        pscore = ProjectScore.objects.latest_for_project(self.pk)
-        if pscore is not None:
-            return pscore.total_score
+        pscore = ProjectScore.objects.latest_for_project(self.pk, 1)
+        if pscore:
+            return pscore[0].total_score
         else:
             return pscore
 
@@ -62,9 +62,9 @@ class Project(models.Model):
                 'repo_url': self.repo_url,
                 'slug': self.slug}
         from score.models import ProjectScore
-        pscore = ProjectScore.objects.latest_for_project(self.pk)
-        if pscore is not None:
-            data['project_score_id'] = pscore.pk
+        pscore = ProjectScore.objects.latest_for_project(self.pk, 1)
+        if pscore:
+            data['project_score_id'] = pscore[0].pk
         return data
 
     @property

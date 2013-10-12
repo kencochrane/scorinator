@@ -36,12 +36,16 @@ class TestProjectScoreManager():
         G(ProjectScore, project__id=2, total_score=100)
         assert ProjectScore.objects.graded() == 3
 
+    def test_latest_for_project_first(self, projects):
+        l = G(ProjectScore, project__id=2, total_score=100)
+        assert list(ProjectScore.objects.latest_for_project(2, 1)) == [l]
+
     def test_latest_for_project(self, projects):
         l = G(ProjectScore, project__id=2, total_score=100)
-        assert ProjectScore.objects.latest_for_project(2) == l
+        assert list(ProjectScore.objects.latest_for_project(2)) == [l, projects['p1']]
 
     def test_latest_for_project_none(self, projects):
-        assert ProjectScore.objects.latest_for_project(99) is None
+        assert list(ProjectScore.objects.latest_for_project(99)) == []
 
 
 @pytest.mark.django_db

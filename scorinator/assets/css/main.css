@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
 body {
     background: url(../img/math-equations.jpg);
 }
@@ -35,4 +31,24 @@ footer {
 
 hr {
     border: 1px solid #cccccc;
+}
+
+#chart-scores {
+    margin-top: 30px;
+}
+
+#chart-scores path {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+}
+
+#chart-scores circle {
+    fill: #ccc;
+    stroke: black;
+    stroke-width: 2;
+}
+
+#chart-scores text {
+    font-size: 11px;
 }

@@ -15,14 +15,14 @@ class ProjectScoreManager(models.Manager):
         return self.get_query_set().values_list("project__pk").filter(
             total_score__isnull=False).distinct().count()
 
-    def latest_for_project(self, project_id):
+    def latest_for_project(self, project_id, limit=10):
         try:
             latest = self.get_query_set().filter(
                 project__pk=project_id,
                 total_score__isnull=False
-            ).order_by("-last_updated")[0]
+            ).order_by("-last_updated")[:limit]
         except IndexError:
-            latest = None
+            latest = []
         return latest
 
 

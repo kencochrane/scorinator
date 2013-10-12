@@ -1,5 +1,12 @@
 {% extends "base.html" %}
-{% load score_tags %}
+{% load static score_tags %}
+
+{% block page-js %}
+  <script type="text/javascript" src="{% static 'js/vendor/d3.v3.min.js' %}"></script>
+  <script type="text/javascript">
+    var chart_dataset = {{ latest_scores }};
+  </script>
+{% endblock page-js %}
 
 {% block content %}
   <div class="page-header">
@@ -28,6 +35,12 @@
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
       <p>{{ project.description }}</p>
+
+      {% if latest_scores|length > 2 %}
+        <div id="chart-scores">
+          <h3>Last {{ latest_scores|length }} Scores</h3>
+        </div>
+      {% endif %}
     </div>
     <div class="col-md-6 col-md-offset-1">
       <h3>Score Breakdown</h3>
