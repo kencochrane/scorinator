@@ -69,12 +69,14 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         from score.models import ProjectScoreAttribute
-        latest_scores = ProjectScore.objects.latest_for_project(self.object.pk, 10)
+        latest_scores = ProjectScore.objects.latest_for_project(
+            self.object.pk, 10)
         if latest_scores:
             kwargs.update(
                 score_breakdown=ProjectScoreAttribute.objects.for_score(
                     latest_scores[0].pk
                 )
             )
-        kwargs.update(latest_scores=[float(x.total_score) for x in latest_scores])
+        kwargs.update(latest_scores=[float(x.total_score)
+                                     for x in latest_scores])
         return super(ProjectDetailView, self).get_context_data(**kwargs)

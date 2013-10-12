@@ -35,6 +35,7 @@
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
       <p>{{ project.description }}</p>
+      <p><strong>Language:</strong> {{ project.primary_language }}</p>
 
       {% if latest_scores|length > 2 %}
         <div id="chart-scores">

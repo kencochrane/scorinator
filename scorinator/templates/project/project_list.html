@@ -14,6 +14,7 @@
           <tr>
             <td>Name</td>
             <td>Repo URL</td>
+            <td>Language</td>
             <td>Score</td>
             {% if user.is_superuser %}
             <td>Action</td>
@@ -31,6 +32,7 @@
             <td>
               <a href="{{ project.repo_url }}">{{ project.repo_url }}</a>
             </td>
+            <td>{{ project.primary_language|default:"Unknown" }}</td>
             <td>{{ project.score|display_project_score }}</td>
             {% if user.is_superuser %}
             <td>

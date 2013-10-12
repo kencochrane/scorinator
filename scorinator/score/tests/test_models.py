@@ -42,7 +42,8 @@ class TestProjectScoreManager():
 
     def test_latest_for_project(self, projects):
         l = G(ProjectScore, project__id=2, total_score=100)
-        assert list(ProjectScore.objects.latest_for_project(2)) == [l, projects['p1']]
+        assert list(
+            ProjectScore.objects.latest_for_project(2)) == [l, projects['p1']]
 
     def test_latest_for_project_none(self, projects):
         assert list(ProjectScore.objects.latest_for_project(99)) == []

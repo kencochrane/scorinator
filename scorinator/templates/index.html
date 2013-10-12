@@ -45,6 +45,7 @@
             <tr>
               <td>Score</td>
               <td>Name</td>
+              <td>Language</td>
               <td>Repo URL</td>
             </tr>
           </thead>
@@ -57,6 +58,7 @@
                     {{ score.project.name }}
                   </a>
                 </td>
+                <td>{{ score.project.primary_language }}</td>
                 <td>
                   <a href="{{ score.project.repo_url }}">{{ score.project.repo_url }}</a>
                 </td>

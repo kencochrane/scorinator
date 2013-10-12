@@ -39,7 +39,7 @@ def display_project_score(value):
 @register.filter()
 def display_attribute_score(value):
     tag = "default"
-    title=""
+    title = ""
     return display_score(value, tag, title)
 
 

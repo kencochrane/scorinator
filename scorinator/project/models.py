@@ -30,6 +30,7 @@ class Project(models.Model):
     repo_url = models.URLField()
     description = models.TextField()
     slug = models.SlugField(unique=True)
+    primary_language = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 
