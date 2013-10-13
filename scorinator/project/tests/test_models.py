@@ -1,6 +1,5 @@
 import pytest
 
-from django.test import TestCase
 from django_dynamic_fixture import G
 from project.models import Project, set_slug
 
@@ -24,7 +23,7 @@ class TestSetSlug():
 
 
 @pytest.mark.django_db
-class TestProject(TestCase):
+class TestProject():
     def test_ordering(self):
         p = G(Project, name="AAAbc")
         G(Project, name="zxy")
